@@ -1,0 +1,37 @@
+import { FaMapMarkerAlt, FaComments } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
+import { Rating } from "@mui/material";
+
+const PlaceThumbnail = (props) => {
+    let place = props.place;
+    const navigate = useNavigate();
+    const handleClick = () => {
+        navigate('/placeinfor');
+    };
+    return (
+        <div className="placethumbnail" onClick={handleClick}>
+            <div className="placethumbnail__img">
+                <img src={place.img} alt="Ảnh tạm"></img>
+            </div>
+            <div className="placethumbnail__intro">
+                <div className="placethumbnail__rate">
+                    <Rating name="size-large" defaultValue={place.rate} precision={0.5} size="large" readOnly/>
+                </div>
+                <div className="placethumbnail__title">
+                    {place.title}
+                </div>
+                <div className="placethumbnail__sth">
+                    <div className="placethumbnail__sth--address">
+                        <FaMapMarkerAlt></FaMapMarkerAlt>
+                        <div>{place.address}</div>
+                    </div>
+                    <div className="placethumbnail__sth--comment">
+                        <FaComments></FaComments>
+                        <div>{place.comment}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+export default PlaceThumbnail;
