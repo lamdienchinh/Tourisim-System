@@ -86,7 +86,7 @@ const User = () => {
 
     return (
         <div className='user'>
-            <div className="user__title">
+            <div className="user__title" onClick={fetchdata}>
                 <h1>THÔNG TIN NGƯỜI DÙNG</h1>
             </div>
             <div className='user__field1'>

@@ -1,11 +1,10 @@
-
+import logo from "../../assets/imgs/logo.png";
 const Footer = () => {
     return (
         <footer className="footer">
             <div className="footer-content">
                 <div className="footer-logo">
-                    <img src="#" alt="Logo" />
-                    <h1>Your Company</h1>
+                    <img src={logo} alt="Logo" />
                 </div>
                 <nav className="footer-links">
                     
@@ -15,7 +14,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className="footer-bottom">
-                <p>&copy; {new Date().getFullYear()} Your Company. All rights reserved.</p>
+                <p>&copy; {new Date().getFullYear()} Vietnam Blockchain Corporation 2023. All rights reserved.</p>
             </div>
         </footer>
     );

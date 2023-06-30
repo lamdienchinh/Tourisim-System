@@ -44,7 +44,7 @@ const Home = () => {
             img: img,
             rate: 5,
             address: 'ADDRESS',
-            comment: 'COMMENT'
+            comment: 'REVIEW'
         },
         {
             type: 'di tich',
@@ -52,7 +52,7 @@ const Home = () => {
             img: img,
             rate: 5,
             address: 'ADDRESS',
-            comment: 'COMMENT'
+            comment: 'REVIEW'
         },
         {
             type: 'am thuc',
@@ -60,7 +60,7 @@ const Home = () => {
             img: img,
             rate: 5,
             address: 'ADDRESS',
-            comment: 'COMMENT'
+            comment: 'REVIEW'
         },
         {
             type: 'giai tri',
@@ -68,7 +68,7 @@ const Home = () => {
             img: img,
             rate: 5,
             address: 'ADDRESS',
-            comment: 'COMMENT'
+            comment: 'REVIEW'
         },
         {
             type: 'noi o',
@@ -76,7 +76,7 @@ const Home = () => {
             img: img,
             rate: 5,
             address: 'ADDRESS',
-            comment: 'COMMENT'
+            comment: 'REVIEW'
         }
     ];
 
@@ -101,43 +101,29 @@ const Home = () => {
     let row3 = temp.slice(6, 9);
     let row4 = temp.slice(9, 12);
 
-    const test1 = async (event) => {
-        try {
-            let ipfsHash = 'bafkreibexoobcff3skr2yvhcri3duins4rvc2kamfe4nx2lmnmsatxa4ny';
-            const ipfsURL = `https://gateway.pinata.cloud/ipfs/${ipfsHash}`;
-
-            const response = await axios.get(ipfsURL);
-            const jsonData = response.data;
-
-            console.log(jsonData);
-            // Dữ liệu JSON sẽ được hiển thị trong jsonData
-        } catch (error) {
-            console.error(error);
-        }
-    };
     let currents;
     const filter = (value) => {
         if (getplaces != value) {
             setGetPlaces(value);
             switch (value) {
                 case 1:
-                    currents = array.filter(item => item.type == 'danh lam')
+                    currents = array.filter(item => item.type === 'danh lam')
                     setPlaces(currents);
                     break;
                 case 2:
-                    currents = array.filter(item => item.type == 'di tich')
+                    currents = array.filter(item => item.type === 'di tich')
                     setPlaces(currents);
                     break;
                 case 3:
-                    currents = array.filter(item => item.type == 'am thuc')
+                    currents = array.filter(item => item.type === 'am thuc')
                     setPlaces(currents);
                     break;
                 case 4:
-                    currents = array.filter(item => item.type == 'giai tri')
+                    currents = array.filter(item => item.type === 'giai tri')
                     setPlaces(currents);
                     break;
                 case 5:
-                    currents = array.filter(item => item.type == 'noi o')
+                    currents = array.filter(item => item.type === 'noi o')
                     setPlaces(currents);
                     break;
                 default:
@@ -150,28 +136,40 @@ const Home = () => {
         }
     }
 
+    const search = (keyword) => {
+        let data = array;
+        const filteredData = data.filter((item) => {
+            // Chuyển đổi tiêu đề và từ khóa tìm kiếm về chữ thường để tìm kiếm không phân biệt hoa thường
+            const lowerCaseTitle = item.title.toLowerCase();
+            const lowerCaseKeyword = keyword.toLowerCase();
+
+            // Sử dụng indexOf() để kiểm tra sự xuất hiện của từ khóa trong tiêu đề
+            return lowerCaseTitle.indexOf(lowerCaseKeyword) !== -1;
+        });
+        setPlaces(filteredData);
+    }
     return (
         <div className="home">
             <div className="home__slides">
                 <div className="home__slides--searchbar" >
                     <input type="search" onChange={(event) => setInputSearch(event.target.value)} placeholder="Search here ..." />
-                    <FaSearch className="search-icon"></FaSearch>
+                    <FaSearch className="search-icon" onClick={()=>search(inputsearch)}></FaSearch>
                 </div>
             </div>
             <div className="home__options">
-                <div className={`home__options--danhlam ${getplaces == 1 ? 'home__options--selected' : ''}`} onClick={() => filter(1)}>
+                <div className={`home__options--danhlam ${getplaces === 1 ? 'home__options--selected' : ''}`} onClick={() => filter(1)}>
                     Danh lam thắng cảnh
                 </div>
-                <div className={`home__options--ditich ${getplaces == 2 ? 'home__options--selected' : ''}`} onClick={() => filter(2)}>
+                <div className={`home__options--ditich ${getplaces === 2 ? 'home__options--selected' : ''}`} onClick={() => filter(2)}>
                     Di tích
                 </div>
-                <div className={`home__options--amthuc ${getplaces == 3 ? 'home__options--selected' : ''}`} onClick={() => filter(3)}>
+                <div className={`home__options--amthuc ${getplaces === 3 ? 'home__options--selected' : ''}`} onClick={() => filter(3)}>
                     Ẩm thực
                 </div>
-                <div className={`home__options--giaitri ${getplaces == 4 ? 'home__options--selected' : ''}`} onClick={() => filter(4)}>
+                <div className={`home__options--giaitri ${getplaces === 4 ? 'home__options--selected' : ''}`} onClick={() => filter(4)}>
                     Vui chơi, giải trí
                 </div>
-                <div className={`home__options--noio ${getplaces == 5 ? 'home__options--selected' : ''}`} onClick={() => filter(5)}>
+                <div className={`home__options--noio ${getplaces === 5 ? 'home__options--selected' : ''}`} onClick={() => filter(5)}>
                     Nơi ở
                 </div>
             </div>

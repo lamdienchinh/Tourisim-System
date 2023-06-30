@@ -58,7 +58,7 @@ const CreateAlbum = () => {
         <div className="createalbum">
             <div className="createalbum__left">
                 <div className="createalbum__header">
-                    <button onClick={() => window.location.href = '/album'}>Back</button>
+                    <button onClick={() => window.location.href = '/album'}>Quay lại</button>
                 </div>
                 <h2>Create Album</h2>
                 <div className="places-list">
@@ -154,7 +154,7 @@ const CreateAlbum = () => {
             </div>
             <div className="createalbum__right">
                 <h3>Selected Places</h3>
-                <button onClick={handleCreateAlbum}>Create New Album</button>
+                <button onClick={handleCreateAlbum}>Tạo Album</button>
                 <div className="selected-places">
                     <ul>
                         {selectedPlaces.map((place) => (

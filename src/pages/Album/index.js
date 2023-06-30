@@ -58,6 +58,7 @@ const Album = () => {
                     Thêm Album
                 </button>
             </div>
+            <div className="album__title--1">Danh sách các Album trước đó</div>
             <div className="album__row row2">
                 <div className="home__results">
                     <div className="home__results--1">

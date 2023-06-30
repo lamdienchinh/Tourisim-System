@@ -4,26 +4,32 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 80px;
-   & .album__title {
+    & .album__title {
         display: flex;
         justify-content: center;
-   }
-   & .row1, .row2 {
+    }
+    & .album__title--1 {
+        padding: 20px;
+        font-size: 28px;
+        font-weight: 700;
+    }
+    & .row1,
+    .row2 {
         width: 80%;
         padding: 20px;
         margin-top: 20px;
         border-radius: 5px;
-        border: 2px solid rgb(3, 3, 153);
+        // border: 1px solid rgb(3, 3, 153);
         display: flex;
         align-items: center;
         flex-direction: column;
-   }
+        box-shadow: 0 2px 6px rgba(0, 0, 0.5, 0.5);
+    }
 }
-  
+
 .album__row {
-    
 }
-  
+
 .album__button {
     /* CSS cho hàng */
     background-color: #007bff;
@@ -39,7 +45,7 @@
         scale: 1.005;
     }
 }
-  
+
 .album__item {
     /* CSS cho album */
     padding: 20px;
@@ -53,7 +59,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    &>div {
+    & > div {
         // display: flex;
         // flex-direction: row;
         // justify-content: flex-start;
@@ -61,7 +67,7 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr); /* Tạo 4 cột có kích thước bằng nhau */
         grid-gap: 10px;
-        &>div {
+        & > div {
             width: 90%;
         }
     }
