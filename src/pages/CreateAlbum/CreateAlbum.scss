@@ -1,0 +1,85 @@
+/* CSS for CreateAlbum component */
+.createalbum {
+    padding: 80px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    & .createalbum__left {
+        width: 70%;
+    }
+    & .createalbum__right {
+        padding-left: 20px;
+        width: 20%;
+    }
+    & button {
+        background-color: #007bff;
+        color: #ffffff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        &:hover {
+            background-color: #0056b3;
+            scale: 1.005;
+        }
+    }
+}
+.places-list {
+    margin-bottom: 20px;
+}
+
+.places-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.places-list li {
+    cursor: pointer;
+    padding: 5px;
+    margin-bottom: 5px;
+    background-color: #f2f2f2;
+}
+
+.places-list li:hover {
+    background-color: #e6e6e6;
+}
+
+.form-container {
+    margin-bottom: 20px;
+    & #filled-size-normal {
+        padding: 20px;
+    }
+}
+
+.form-container h3 {
+    margin-top: 0;
+}
+
+.form-container form {
+    display: grid;
+    padding-bottom: 20px;
+    gap: 10px;
+}
+
+.form-container label {
+    display: grid;
+    gap: 5px;
+}
+
+.form-container input,
+.form-container textarea {
+    width: 100%;
+    padding: 5px;
+}
+
+.selected-places ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.selected-places li {
+    margin-bottom: 5px;
+}

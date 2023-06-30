@@ -4,16 +4,22 @@ import { FaSearch } from 'react-icons/fa';
 import { useState } from 'react';
 import { Pagination } from '@mui/material';
 import img from "../../assets/imgs/slider_banner_1.png";
-
+import { getUserData } from '../../state/selectors';
+import { useSelector } from 'react-redux';
+import axios from "axios"
 //import scss
 import "./Home.scss"
 
 
 const Home = () => {
+    let walletAddress = useSelector(getUserData);
+
     const [inputsearch, setInputSearch] = useState("");
+
+
     const [allplaces, setAllPlaces] = useState([]);
-    const [places, setPlaces] = useState([]);
     const [select, setSelect] = useState(1);
+    const [getplaces, setGetPlaces] = useState(0);
     //Lấy place để hiển thị
 
 
@@ -30,25 +36,119 @@ const Home = () => {
     // let totalPages = Math.ceil((allplaces.length) / 12);
 
     //Cho mẫu một chỗ, một place thumbnail gồm title, img, số sao, địa chỉ, số cmt
-    let temp = {
-        title: "TITLE",
-        img: img,
-        rate: 5,
-        address: "ADDRESS",
-        comment: "COMMENT"
-    }
-    const array = Array.from({ length: 32 }, () => ({ ...temp }));
+
+    const types = [
+        {
+            type: 'danh lam',
+            title: 'Danh lam',
+            img: img,
+            rate: 5,
+            address: 'ADDRESS',
+            comment: 'COMMENT'
+        },
+        {
+            type: 'di tich',
+            title: 'Di tích',
+            img: img,
+            rate: 5,
+            address: 'ADDRESS',
+            comment: 'COMMENT'
+        },
+        {
+            type: 'am thuc',
+            title: 'Ẩm thực',
+            img: img,
+            rate: 5,
+            address: 'ADDRESS',
+            comment: 'COMMENT'
+        },
+        {
+            type: 'giai tri',
+            title: 'Giải trí',
+            img: img,
+            rate: 5,
+            address: 'ADDRESS',
+            comment: 'COMMENT'
+        },
+        {
+            type: 'noi o',
+            title: 'Nơi ở',
+            img: img,
+            rate: 5,
+            address: 'ADDRESS',
+            comment: 'COMMENT'
+        }
+    ];
+
+    const array = Array.from({ length: 50 }, (_, index) =>
+        types[Math.floor(index / 10)]
+    ).flatMap((placeType, index) => ({
+        ...placeType,
+        title: `${placeType.title} ${index % 10 + 1}`
+    }));
+    // const array = Array.from({ length: 32 }, () => ({ ...temp }));
+    const [places, setPlaces] = useState(array);
 
     let start = 12 * (select - 1);
     let end = start + 12;
-    if (end > array.length) end = array.length;
-    let currents = array.slice(start, end);
-    let totalPages = Math.ceil((array.length) / 12);
+    if (end > places.length) end = places.length;
+    let temp = places.slice(start, end);
 
-    let row1 = currents.slice(0, 3);
-    let row2 = currents.slice(3, 6);
-    let row3 = currents.slice(6, 9);
-    let row4 = currents.slice(9, 12);
+    let totalPages = Math.ceil((places.length) / 12);
+
+    let row1 = temp.slice(0, 3);
+    let row2 = temp.slice(3, 6);
+    let row3 = temp.slice(6, 9);
+    let row4 = temp.slice(9, 12);
+
+    const test1 = async (event) => {
+        try {
+            let ipfsHash = 'bafkreibexoobcff3skr2yvhcri3duins4rvc2kamfe4nx2lmnmsatxa4ny';
+            const ipfsURL = `https://gateway.pinata.cloud/ipfs/${ipfsHash}`;
+
+            const response = await axios.get(ipfsURL);
+            const jsonData = response.data;
+
+            console.log(jsonData);
+            // Dữ liệu JSON sẽ được hiển thị trong jsonData
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    let currents;
+    const filter = (value) => {
+        if (getplaces != value) {
+            setGetPlaces(value);
+            switch (value) {
+                case 1:
+                    currents = array.filter(item => item.type == 'danh lam')
+                    setPlaces(currents);
+                    break;
+                case 2:
+                    currents = array.filter(item => item.type == 'di tich')
+                    setPlaces(currents);
+                    break;
+                case 3:
+                    currents = array.filter(item => item.type == 'am thuc')
+                    setPlaces(currents);
+                    break;
+                case 4:
+                    currents = array.filter(item => item.type == 'giai tri')
+                    setPlaces(currents);
+                    break;
+                case 5:
+                    currents = array.filter(item => item.type == 'noi o')
+                    setPlaces(currents);
+                    break;
+                default:
+                    break;
+            }
+        }
+        else {
+            setGetPlaces(0);
+            setPlaces(array);
+        }
+    }
 
     return (
         <div className="home">
@@ -59,19 +159,19 @@ const Home = () => {
                 </div>
             </div>
             <div className="home__options">
-                <div className="home__options--danhlam">
+                <div className={`home__options--danhlam ${getplaces == 1 ? 'home__options--selected' : ''}`} onClick={() => filter(1)}>
                     Danh lam thắng cảnh
                 </div>
-                <div className="home__options--ditich">
+                <div className={`home__options--ditich ${getplaces == 2 ? 'home__options--selected' : ''}`} onClick={() => filter(2)}>
                     Di tích
                 </div>
-                <div className="home__options--amthuc">
+                <div className={`home__options--amthuc ${getplaces == 3 ? 'home__options--selected' : ''}`} onClick={() => filter(3)}>
                     Ẩm thực
                 </div>
-                <div className="home__options--giaitri">
+                <div className={`home__options--giaitri ${getplaces == 4 ? 'home__options--selected' : ''}`} onClick={() => filter(4)}>
                     Vui chơi, giải trí
                 </div>
-                <div className="home__options--noio">
+                <div className={`home__options--noio ${getplaces == 5 ? 'home__options--selected' : ''}`} onClick={() => filter(5)}>
                     Nơi ở
                 </div>
             </div>

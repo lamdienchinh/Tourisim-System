@@ -5,7 +5,13 @@ import img_banner from "../../assets/imgs/slider_banner_1.png";
 import SliderBanner from "../../components/slider_banner";
 //import scss
 import "./Intro.scss";
+
+import { useSelector } from 'react-redux';
+import { getUserData } from '../../state/selectors';
+
 function Intro() {
+    let walletAddress = useSelector(getUserData);
+    console.log(walletAddress);
     return (
         <div className="intro">
             <div className="intro__banner">
