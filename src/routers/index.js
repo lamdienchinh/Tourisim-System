@@ -3,15 +3,15 @@ import { Routes, Route } from "react-router-dom";
 //import layout
 import General_Layout from "../layouts/general_layout";
 //import pages
-import Intro from "../pages/intro";
-import Home from "../pages/home";
-import PlaceInfor from "../pages/placeInfor";
-import User from "../pages/user";
-import Album from "../pages/album";
-import ViewAlbum from "../pages/viewAlbum";
+import Intro from "../pages/Intro";
+import Home from "../pages/Home";
+import PlaceInfor from "../pages/PlaceInfor";
+import User from "../pages/User";
+import Album from "../pages/Album";
+import ViewAlbum from "../pages/ViewAlbum";
 import UserLayout from "../layouts/user_layout";
-import CreateAlbum from "../pages/createAlbum";
-import Trip from "../pages/trips";
+import CreateAlbum from "../pages/CreateAlbum";
+import Trip from "../pages/Trips";
 
 const RouterList = () => {
   return (
