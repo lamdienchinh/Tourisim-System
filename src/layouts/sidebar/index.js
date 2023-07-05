@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { logout } from "../../state/userSlice";
 import { useSelector } from 'react-redux';
 import { getUserData } from "../../state/selectors";
+import "./css/Sidebar.scss";
 
 const Sidebar = () => {
     let walletAddress = useSelector(getUserData);

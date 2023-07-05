@@ -1,5 +1,5 @@
 import { LinearProgress, Rating } from "@mui/material";
-
+import "./css/Review_Chart.scss";
 const ReviewChart = (props) => {
     // let reviews = props.reviews;
     return (

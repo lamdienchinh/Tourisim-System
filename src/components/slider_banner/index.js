@@ -1,4 +1,5 @@
 import React from "react";
+import "./css/Slider_Banner.scss";
 
 const SliderBanner = (props) => {
   return (

@@ -1,5 +1,6 @@
 import img from "../../assets/imgs/slider_banner_1.png";
 import { Rating } from "@mui/material";
+import "./css/Review.scss";
 
 const Review = () => {
     return (

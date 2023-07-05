@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './ViewAlbum.scss';
+import Container from '@mui/material/Container';
+import './css/ViewAlbum.scss';
 
 const ViewAlbum = () => {
     const [selectedLocation, setSelectedLocation] = useState(null);
@@ -31,39 +32,41 @@ const ViewAlbum = () => {
 
     return (
         <div className="viewalbum">
-            <div className="viewalbum__header">
-                <button className="viewalbum__back-button" onClick={handleGoBack}>
-                    Quay lại
-                </button>
-                <h2 className="viewalbum__album-title">Tên Cuốn Album</h2>
-            </div>
-            <div className="viewalbum__body">
-                <div className="viewalbum__sidebar">
-                    <h2 className="viewalbum__title">Danh sách địa điểm</h2>
-                    <ul className="viewalbum__location-list">
-                        {locations.map((location) => (
-                            <li
-                                key={location.id}
-                                className={`viewalbum__location-item ${selectedLocation?.id === location.id ? 'active' : ''}`}
-                                onClick={() => handleLocationClick(location)}
-                            >
-                                {location.name}
-                            </li>
-                        ))}
-                    </ul>
+            <Container maxWidth="lg">
+                <div className="viewalbum__header">
+                    <button className="viewalbum__back-button" onClick={handleGoBack}>
+                        Quay lại
+                    </button>
+                    <h2 className="viewalbum__album-title">Tên Cuốn Album</h2>
                 </div>
-                <div className="viewalbum__content">
-                    {selectedLocation ? (
-                        <div className="viewalbum__location-details">
-                            <h3 className="viewalbum__location-name">{selectedLocation.name}</h3>
-                            <p className="viewalbum__location-description">{selectedLocation.description}</p>
-                            <img src={selectedLocation.image} alt={selectedLocation.name} className="viewalbum__location-image" />
-                        </div>
-                    ) : (
-                        <p className="viewalbum__empty-message">Chọn một địa điểm để xem thông tin chi tiết</p>
-                    )}
+                <div className="viewalbum__body">
+                    <div className="viewalbum__sidebar">
+                        <h2 className="viewalbum__title">Danh sách địa điểm</h2>
+                        <ul className="viewalbum__location-list">
+                            {locations.map((location) => (
+                                <li
+                                    key={location.id}
+                                    className={`viewalbum__location-item ${selectedLocation?.id === location.id ? 'active' : ''}`}
+                                    onClick={() => handleLocationClick(location)}
+                                >
+                                    {location.name}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className="viewalbum__content">
+                        {selectedLocation ? (
+                            <div className="viewalbum__location-details">
+                                <h3 className="viewalbum__location-name">{selectedLocation.name}</h3>
+                                <p className="viewalbum__location-description">{selectedLocation.description}</p>
+                                <img src={selectedLocation.image} alt={selectedLocation.name} className="viewalbum__location-image" />
+                            </div>
+                        ) : (
+                            <p className="viewalbum__empty-message">Chọn một địa điểm để xem thông tin chi tiết</p>
+                        )}
+                    </div>
                 </div>
-            </div>
+            </Container>
         </div>
     );
 };

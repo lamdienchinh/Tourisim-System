@@ -1,6 +1,7 @@
 import { FaMapMarkerAlt, FaComments } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { Rating } from "@mui/material";
+import "./css/Place_Thumbnail.scss";
 
 const PlaceThumbnail = (props) => {
     let place = props.place;
@@ -15,7 +16,7 @@ const PlaceThumbnail = (props) => {
             </div>
             <div className="placethumbnail__intro">
                 <div className="placethumbnail__rate">
-                    <Rating name="size-large" defaultValue={place.rate} precision={0.5} size="large" readOnly/>
+                    <Rating name="size-large" defaultValue={place.rate} precision={0.5} size="large" readOnly />
                 </div>
                 <div className="placethumbnail__title">
                     {place.title}

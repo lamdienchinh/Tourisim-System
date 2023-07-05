@@ -1,10 +1,11 @@
-import "./User.scss";
+import "./css/User.scss";
 import React, { useState, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { TextField, Button, Avatar, Input } from '@mui/material';
 import axios from "axios";
+import { FaCamera } from 'react-icons/fa';
 
 import img from "../../assets/imgs/avatar.png"
 const User = () => {
@@ -23,8 +24,8 @@ const User = () => {
     const [avatar, setAvatar] = useState(user.avatar);
     const [avatarchange, setAvatarchange] = useState(user.avatar);
 
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+    // const navigate = useNavigate();
+    // const dispatch = useDispatch();
     const form1Ref = useRef(null);
     const form2Ref = useRef(null);
 
@@ -83,9 +84,48 @@ const User = () => {
         setAvatar(file);
         setAvatarchange(URL.createObjectURL(file))
     };
+    const openCamera = async () => {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            // Truy cập camera thành công, có thể thực hiện các thao tác khác tại đây
+            console.log('Truy cập camera thành công');
+        } catch (error) {
+            // Xử lý lỗi truy cập camera
+            console.error('Lỗi truy cập camera:', error);
+        }
+    };
 
+    const handleCameraSuccess = (stream) => {
+        const video = document.createElement('video');
+        video.srcObject = stream;
+        video.onloadedmetadata = () => {
+            video.play();
+            // Thực hiện xử lý hình ảnh chụp tại đây
+            // Ví dụ: lấy ảnh từ video và hiển thị nó trong một thẻ <img>
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+            const capturedImage = canvas.toDataURL('image/jpeg');
+            // Sử dụng capturedImage để làm gì đó, ví dụ: hiển thị nó trong một thẻ <img>
+            setAvatar(capturedImage);
+            setAvatarchange(capturedImage);
+            // Đóng stream camera
+            stream.getTracks().forEach((track) => track.stop());
+        };
+    };
+
+    const handleCameraError = (error) => {
+        console.error("Lỗi truy cập camera:", error);
+    };
     return (
         <div className='user'>
+            <div className="user__camera">
+                <button className="camera-button" onClick={openCamera}>
+                    <FaCamera className="camera-icon" />
+                    Mở camera
+                </button>
+            </div>
             <div className="user__title" onClick={fetchdata}>
                 <h1>THÔNG TIN NGƯỜI DÙNG</h1>
             </div>

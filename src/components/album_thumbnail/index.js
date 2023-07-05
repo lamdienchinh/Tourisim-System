@@ -1,7 +1,6 @@
-import { FaMapMarkerAlt, FaComments } from "react-icons/fa";
+// import { FaMapMarkerAlt, FaComments } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
-import { Rating } from "@mui/material";
-
+import "./css/Album_Thumbnail.scss"
 const AlbumThumbnail = (props) => {
     let place = props.place;
     const navigate = useNavigate();
@@ -14,11 +13,11 @@ const AlbumThumbnail = (props) => {
                 <img src={place.img} alt="Ảnh tạm"></img>
             </div>
             <div className="albumthumbnail__intro">
-                <div className="albumthumbnail__rate">
-                    <Rating name="size-large" defaultValue={place.rate} precision={0.5} size="large" readOnly />
-                </div>
                 <div className="albumthumbnail__title">
                     {place.title}
+                </div>
+                <div className="albumthumbnail__time">
+                    Thời gian tạo Album: {place.time}
                 </div>
             </div>
         </div>
