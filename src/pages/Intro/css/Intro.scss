@@ -1,8 +1,9 @@
 .about-us-container {
-    margin: 0 auto;
     padding-left: 0px;
     padding-top: 60px;
-    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 100px;
+    width: 80%;
 }
 
 // /* the slides */
@@ -18,8 +19,7 @@
 .slick-slide > div {
     display: grid;
     place-items: center;
-    margin-top: 50px;
-    margin: auto;
+    margin-top: 60px;
     padding: 0px;
 }
 .slider-banner {
@@ -27,7 +27,7 @@
         height: 400px;
         width: 100%;
         object-fit: cover;
-        margin: auto;
+        // margin: auto;
     }
 }
 
@@ -39,6 +39,13 @@
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    align-items: center;
 }
 
 .section-description {
@@ -52,9 +59,11 @@
 
 .employees-container {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    align-items: center;
+    gap: 100px;
 }
 
 .employee-card {

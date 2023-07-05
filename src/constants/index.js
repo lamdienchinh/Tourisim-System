@@ -6,8 +6,8 @@ const types = [
         title: 'Danh lam',
         img: img,
         rate: 5,
-        address: 'ADDRESS',
-        comment: 'REVIEW'
+        address: 'ADDRESS1',
+        comment: '120'
     },
     {
         id: 2,
@@ -15,8 +15,8 @@ const types = [
         title: 'Di tích',
         img: img,
         rate: 5,
-        address: 'ADDRESS',
-        comment: 'REVIEW'
+        address: 'ADDRESS2',
+        comment: '120'
     },
     {
         id: 3,
@@ -24,8 +24,8 @@ const types = [
         title: 'Ẩm thực',
         img: img,
         rate: 5,
-        address: 'ADDRESS',
-        comment: 'REVIEW'
+        address: 'ADDRESS3',
+        comment: '120'
     },
     {
         id: 4,
@@ -33,8 +33,8 @@ const types = [
         title: 'Giải trí',
         img: img,
         rate: 5,
-        address: 'ADDRESS',
-        comment: 'REVIEW'
+        address: 'ADDRESS4',
+        comment: '120'
     },
     {
         id: 5,
@@ -42,8 +42,8 @@ const types = [
         title: 'Nơi ở',
         img: img,
         rate: 5,
-        address: 'ADDRESS',
-        comment: 'REVIEW'
+        address: 'ADDRESS5',
+        comment: '120'
     }
 ];
 const trips =

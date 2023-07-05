@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 .home {
     padding-top: 60px;
     & .home__slides {
@@ -98,7 +99,7 @@
             grid-template-columns: repeat(3, 1fr); /* Tạo 4 cột có kích thước bằng nhau */
             grid-gap: 10px;
             & > div {
-                width: 90%;
+                // width: 100%;
             }
         }
         & .home__results--pagination {
@@ -107,4 +108,13 @@
             padding-top: 20px;
         }
     }
+}
+.home__searchbar__title {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: -70px;
+    font-size: 40px;
+    font-family: Lobster, sans-serif;
+    color: white;
 }

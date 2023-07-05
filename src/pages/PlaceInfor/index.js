@@ -114,13 +114,19 @@ const PlaceInfor = () => {
                             <div className="placeinfor__rate--star">
                                 <Rating name="size-large" defaultValue={4.5} precision={0.5} size="large" readOnly />
                             </div>
+                            <div className="placeinfor__rate--address">
+                                Địa chỉ: Ấp Văn Trà, Tịnh Biên, An Giang 884000
+                            </div>
                         </div>
                         <div className="placeinfor__rate--content">
                             <div style={{ fontSize: '40px', fontWeight: '500' }}>
-                                TIÊU ĐỀ
+                                NHỮNG ĐIỀU VỀ RỪNG TRÀM TRÀ SƯ
                             </div>
                             <div>
-                                In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.
+                                Địa chỉ rừng tràm Trà Sư ở đâu? <br></br>
+                                Rừng tràm Trà Sư là một địa điểm du lịch đẹp ở miền Tây rất nổi tiếng thuộc tỉnh An Giang, cách trung tâm TP.Châu Đốc ước chừng khoảng 30km.<br></br>
+                                Với một khoảng cách khá gần như thế, du khách có thể dễ dàng lựa chọn phương tiện di chuyển đến rừng tràm Trà Sư.<br></br>
+                                Trong số các phương tiện đường bộ hiện nay thì khách du lịch thích chọn đi bằng xe máy để trải nghiệm trọn vẹn một chuyến phượt rừng tràm Trà Sư.
                             </div>
                         </div>
                     </div>

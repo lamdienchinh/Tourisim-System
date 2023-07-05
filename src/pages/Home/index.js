@@ -33,7 +33,7 @@ const Home = () => {
     }
 
     useEffect(() => {
-        let temp = types.types
+        let temp = types.types;
         const array = Array.from({ length: 50 }, (_, index) =>
             temp[Math.floor(index / 10)]
         ).flatMap((placeType, index) => ({
@@ -46,10 +46,10 @@ const Home = () => {
     useEffect(() => {
         const start = 12 * (select - 1);
         let end = start + 12;
-        if (end > allplaces.length) end = allplaces.length;
-        const temp = allplaces.slice(start, end);
+        if (end > places.length) end = places.length;
+        const temp = places.slice(start, end);
 
-        const total = Math.ceil(allplaces.length / 12);
+        const total = Math.ceil(places.length / 12);
 
         const row1 = temp.slice(0, 3);
         const row2 = temp.slice(3, 6);
@@ -61,8 +61,7 @@ const Home = () => {
         setRow3(row3);
         setRow4(row4);
         setTotalPages(total);
-        console.log(row1)
-    }, [select, places, totalPages]);
+    }, [select, places]);
 
     const filter = (value) => {
         let currents = allplaces;
@@ -100,21 +99,25 @@ const Home = () => {
     }
 
     const search = (keyword) => {
-        let data = places;
+        let data = allplaces;
         const filteredData = data.filter((item) => {
-            // Chuyển đổi tiêu đề và từ khóa tìm kiếm về chữ thường để tìm kiếm không phân biệt hoa thường
+            // Chuyển đổi tiêu đề và địa chỉ thành chữ thường để tìm kiếm không phân biệt hoa thường
             const lowerCaseTitle = item.title.toLowerCase();
+            const lowerCasePlace = item.address.toLowerCase();
             const lowerCaseKeyword = keyword.toLowerCase();
 
             // Sử dụng indexOf() để kiểm tra sự xuất hiện của từ khóa trong tiêu đề
-            return lowerCaseTitle.indexOf(lowerCaseKeyword) !== -1;
+            let index = lowerCaseTitle.indexOf(lowerCaseKeyword);
+            let index2 = lowerCasePlace.indexOf(lowerCaseKeyword);
+            return (index !== -1) || (index2 !== -1);
         });
         setPlaces(filteredData);
-    }
+    };
     return (
         <div className="home">
             <div className="home__slides">
                 <div className="home__slides--searchbar" >
+                    <div className="home__searchbar__title">Bạn muốn đi đâu ?</div>
                     <input type="search" onChange={(event) => setInputSearch(event.target.value)} placeholder="Search here ..." />
                     <FaSearch className="search-icon" onClick={() => search(inputsearch)}></FaSearch>
                 </div>

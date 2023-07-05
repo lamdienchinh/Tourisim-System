@@ -1,8 +1,11 @@
 import img from "../../assets/imgs/slider_banner_1.png";
 import { Rating } from "@mui/material";
+import img1 from "../../assets/imgs/angiang.webp"
+import { ImageList, ImageListItem, Paper } from "@mui/material";
 import "./css/Review.scss";
 
 const Review = () => {
+    let listimg = [img1, img1, img1, img1];
     return (
         <div className="review">
             <div className="review__row1">
@@ -12,11 +15,11 @@ const Review = () => {
                             <img src={img} alt="Ảnh avatar"></img>
                         </div>
                         <div className="review__name">
-                            Tên người review
+                            Lâm Điền Chinh
                         </div>
                     </div>
                     <div className="review__verify">
-                        Dấu verify
+                        Xác thực
                     </div>
                     <div className="review__time">
                         5:32 PM dd/mm/yyyy
@@ -28,13 +31,25 @@ const Review = () => {
             </div>
             <div className="review__row2">
                 <div className="review__title">
-                    Title
+                    Cảm nghĩ về Rừng Tràm Trà Sư
                 </div>
                 <div className="review__content">
-                    Content
+                    Cảnh ở đây thơ mộng, và rất đẹp !
                 </div>
                 <div className="review__listimgs">
-                    List Imgs
+                    <ImageList cols={4}>
+                        {listimg && listimg.map((image, index) => (
+                            <ImageListItem key={index}>
+                                <Paper>
+                                    <img
+                                        src={image}
+                                        alt={`Image ${index}`}
+                                        style={{ width: '100%' }}
+                                    />
+                                </Paper>
+                            </ImageListItem>
+                        ))}
+                    </ImageList>
                 </div>
             </div>
         </div>

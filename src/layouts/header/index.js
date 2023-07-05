@@ -5,10 +5,13 @@ import { connectWallet } from '../../state/userSlice';
 import { useSelector } from 'react-redux';
 import { getUserData } from '../../state/selectors';
 import { useDispatch } from 'react-redux';
-import { Avatar } from "@mui/material";
+import { Avatar} from "@mui/material";
 import Container from '@mui/material/Container';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import "./css/Header.scss";
-import logo from "../../assets/imgs/journey-on-chain-logo.png"
+import logo from "../../assets/imgs/logo1.png"
 import avatar from "../../assets/imgs/avatar.png";
 
 const Header = () => {
@@ -21,14 +24,27 @@ const Header = () => {
         if (walletAddress) navigate("/user");
         else {
             dispatch(connectWallet(dispatch));
+            // toast.success('Kết nối ví Metamask thành công !');
         }
     };
 
     return (
         <div className="header">
+            <ToastContainer position="top-right"
+                type="success"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light" />
             <Container maxWidth="lg">
                 <div className="header__col1">
                     <img src={logo} alt="App Logo" />
+                    <div>TourDC</div>
                 </div>
                 <div className="header__col2">
                     <div className="header__ele header__ele--home">

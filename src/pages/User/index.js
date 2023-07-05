@@ -1,11 +1,14 @@
 import "./css/User.scss";
 import React, { useState, useRef } from "react";
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
+// import { useDispatch } from 'react-redux';
 // import { useSelector } from "react-redux";
 import { TextField, Button, Avatar, Input } from '@mui/material';
 import axios from "axios";
 import { FaCamera } from 'react-icons/fa';
+import {toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 import img from "../../assets/imgs/avatar.png"
 const User = () => {
@@ -17,12 +20,12 @@ const User = () => {
         avatar: img
     }
 
-    const [firstname, setFirstname] = useState(user.firstname);
-    const [lastname, setLastname] = useState(user.lastname);
-    const [email, setEmail] = useState(user.email);
-    const [phonenumber, setPhonenumber] = useState(user.phone);
-    const [avatar, setAvatar] = useState(user.avatar);
-    const [avatarchange, setAvatarchange] = useState(user.avatar);
+    const [firstname, setFirstname] = useState(user?.firstname);
+    const [lastname, setLastname] = useState(user?.lastname);
+    const [email, setEmail] = useState(user?.email);
+    const [phonenumber, setPhonenumber] = useState(user?.phone);
+    const [avatar, setAvatar] = useState(user?.avatar);
+    const [avatarchange, setAvatarchange] = useState(user?.avatar);
 
     // const navigate = useNavigate();
     // const dispatch = useDispatch();
@@ -30,7 +33,8 @@ const User = () => {
     const form2Ref = useRef(null);
 
     const handleSubmit1 = async (event) => {
-
+        event.preventDefault();
+        toast.success('Thay đổi avatar thành công !');
     };
     const handleSubmit2 = async (event) => {
         event.preventDefault();
@@ -63,6 +67,7 @@ const User = () => {
             data: data
         };
         const res = await axios(config);
+        toast.success('Thay đổi thông tin thành công !');
         console.log(res.data);
     };
     const fetchdata = async (event) => {
@@ -88,9 +93,11 @@ const User = () => {
         try {
             const stream = await navigator.mediaDevices.getUserMedia({ video: true });
             // Truy cập camera thành công, có thể thực hiện các thao tác khác tại đây
-            console.log('Truy cập camera thành công');
+            // console.log('Truy cập camera thành công');
+            toast.success('Truy cập camera thành công !');
         } catch (error) {
             // Xử lý lỗi truy cập camera
+            toast.error('Truy cập camera thất bại');
             console.error('Lỗi truy cập camera:', error);
         }
     };
@@ -115,9 +122,9 @@ const User = () => {
         };
     };
 
-    const handleCameraError = (error) => {
-        console.error("Lỗi truy cập camera:", error);
-    };
+    // const handleCameraError = (error) => {
+    //     console.error("Lỗi truy cập camera:", error);
+    // };
     return (
         <div className='user'>
             <div className="user__camera">

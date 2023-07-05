@@ -11,10 +11,10 @@ const PlaceThumbnail = (props) => {
     };
     return (
         <div className="placethumbnail" onClick={handleClick}>
-            <div className="placethumbnail__img">
-                <img src={place.img} alt="Ảnh tạm"></img>
-            </div>
             <div className="placethumbnail__intro">
+                <div className="placethumbnail__img">
+                    <img src={place.img} alt="Ảnh tạm"></img>
+                </div>
                 <div className="placethumbnail__rate">
                     <Rating name="size-large" defaultValue={place.rate} precision={0.5} size="large" readOnly />
                 </div>

@@ -9,7 +9,23 @@ import { Link } from "react-router-dom";
 import { logout } from "../../state/userSlice";
 import { useSelector } from 'react-redux';
 import { getUserData } from "../../state/selectors";
+import Draggable from 'react-draggable';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Paper } from '@mui/material'
+
+
 import "./css/Sidebar.scss";
+
+function PaperComponent(props) {
+    return (
+        <Draggable
+            handle="#draggable-dialog-title"
+            cancel={'[class*="MuiDialogContent-root"]'}
+        >
+            <Paper {...props} />
+        </Draggable>
+    );
+}
+
 
 const Sidebar = () => {
     let walletAddress = useSelector(getUserData);
@@ -17,6 +33,19 @@ const Sidebar = () => {
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [clogout, setClogout] = useState(false);
+
+    const handleClickOpen = () => {
+        setClogout(true);
+    };
+
+    const handleClose = (event, check) => {
+        if (check) {
+            dispatch(logout(dispatch));
+            navigate('/home')
+        }
+        setClogout(false);
+    };
 
     const toggleDrawer = (open) => (event) => {
         if (event && event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
@@ -26,10 +55,11 @@ const Sidebar = () => {
         setOpen(open);
     };
     const handleclick = async () => {
-        if (window.confirm("Sure")) {
-            dispatch(logout(dispatch));
-            navigate('/home')
-        }
+        // if (check) {
+        //     dispatch(logout(dispatch));
+        //     navigate('/home')
+        // }
+        setClogout(true);
     }
 
     return (
@@ -57,6 +87,27 @@ const Sidebar = () => {
                     </ListItem>
                 </List>
             </SwipeableDrawer>
+            <Dialog
+                open={clogout}
+                onClose={handleClose}
+                PaperComponent={PaperComponent}
+                aria-labelledby="draggable-dialog-title"
+            >
+                <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+                    Đăng xuất
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Bạn có muốn đăng xuất không, hãy xác nhận thật kỹ?
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button autoFocus onClick={(event) => handleClose(event, 0)}>
+                        Huỷ
+                    </Button>
+                    <Button onClick={(event) => handleClose(event, 1)}>Xác nhận</Button>
+                </DialogActions>
+            </Dialog>
         </div>
 
     );
