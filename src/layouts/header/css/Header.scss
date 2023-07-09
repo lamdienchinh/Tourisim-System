@@ -20,12 +20,17 @@
         width: 10%;
         font-size: 18px;
         font-weight: 500;
-        font-family: Lobster, sans-serif;
         color: rgb(0, 0, 0);
         display: flex;
         flex-direction: row;
         align-items: center;
-        & > img {
+        & a {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            font-family: Lobster, sans-serif;
+        }
+        & img {
             object-fit: contain;
             width: 100%;
             height: 100%;

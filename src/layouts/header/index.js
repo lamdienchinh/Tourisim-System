@@ -43,8 +43,10 @@ const Header = () => {
                 theme="light" />
             <Container maxWidth="lg">
                 <div className="header__col1">
-                    <img src={logo} alt="App Logo" />
-                    <div>TourDC</div>
+                    <NavLink className="header__link" to='/'>
+                        <img src={logo} alt="App Logo" />
+                        <div>TourDC</div>
+                    </NavLink>
                 </div>
                 <div className="header__col2">
                     <div className="header__ele header__ele--aboutus">
