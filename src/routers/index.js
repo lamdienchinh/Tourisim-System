@@ -12,7 +12,7 @@ import ViewAlbum from "../pages/ViewAlbum";
 import UserLayout from "../layouts/user_layout";
 import CreateAlbum from "../pages/CreateAlbum";
 import Trips from "../pages/Trips";
-
+import Code from "../pages/Code";
 const RouterList = () => {
   return (
     <Routes>
@@ -28,6 +28,7 @@ const RouterList = () => {
         <Route path="/viewalbum" element={<ViewAlbum />} />
         <Route path="/createalbum" element={<CreateAlbum />} />
         <Route path="/trips" element={<Trips />} />
+        <Route path="/code" element={<Code />} />
       </Route>
     </Routes>
   );
