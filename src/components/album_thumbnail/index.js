@@ -17,7 +17,7 @@ const AlbumThumbnail = (props) => {
                     {place.title}
                 </div>
                 <div className="albumthumbnail__time">
-                    Thời gian tạo Album: {place.time}
+                    Thời gian: {place.time}
                 </div>
             </div>
         </div>

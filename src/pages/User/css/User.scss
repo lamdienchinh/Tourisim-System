@@ -1,12 +1,18 @@
+.user-page {
+    background: rgb(255, 255, 255);
+    height: 50rem;
+    width: 100%;
+}
 .user {
-    width: 96%;
-    height: 90%;
+    width: 80%;
+    height: 80%;
     margin: 0 auto;
     padding-top: 20px;
     padding-bottom: 90px;
-    background-color: rgb(253, 253, 253);
     border-radius: 15px;
     display: grid;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
     grid-template-areas:
         "c1 c1 c1 c1"
         "tt tt tt tt"

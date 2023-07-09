@@ -125,13 +125,13 @@ const Home = () => {
                             <div className={`home-btn home__options--danhlam ${getplaces === 1 ? 'home__options--selected' : ''}`} onClick={() => filter(1)}>
                                 Danh lam
                             </div>
-                            <div className={`home-btn home__options--amthuc ${getplaces === 3 ? 'home__options--selected' : ''}`} onClick={() => filter(3)}>
+                            <div className={`home-btn home__options--amthuc ${getplaces === 2 ? 'home__options--selected' : ''}`} onClick={() => filter(2)}>
                                 Ẩm thực
                             </div>
-                            <div className={`home-btn home__options--giaitri ${getplaces === 4 ? 'home__options--selected' : ''}`} onClick={() => filter(4)}>
+                            <div className={`home-btn home__options--giaitri ${getplaces === 3 ? 'home__options--selected' : ''}`} onClick={() => filter(3)}>
                                 Giải trí
                             </div>
-                            <div className={`home-btn home__options--noio ${getplaces === 5 ? 'home__options--selected' : ''}`} onClick={() => filter(5)}>
+                            <div className={`home-btn home__options--noio ${getplaces === 4 ? 'home__options--selected' : ''}`} onClick={() => filter(4)}>
                                 Nơi ở
                             </div>
                         </div>

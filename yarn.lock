@@ -1972,6 +1972,18 @@
     prop-types "^15.8.1"
     react-is "^18.2.0"
 
+"@mui/x-date-pickers@^6.9.2":
+  version "6.9.2"
+  resolved "https://registry.yarnpkg.com/@mui/x-date-pickers/-/x-date-pickers-6.9.2.tgz#35059a5ba3c4459889b79a955bca6c99f87ff995"
+  integrity sha512-WoXRBUwb/nN/Hg+rArefkuRe30eVTN29dbjTN/vTydBFoNIp8vCaSeqRIEP6Zq2NaDHFWW9FMGChuuFEdROxWA==
+  dependencies:
+    "@babel/runtime" "^7.22.5"
+    "@mui/utils" "^5.13.6"
+    "@types/react-transition-group" "^4.4.6"
+    clsx "^1.2.1"
+    prop-types "^15.8.1"
+    react-transition-group "^4.4.5"
+
 "@multiformats/multiaddr-to-uri@^9.0.1":
   version "9.0.7"
   resolved "https://registry.yarnpkg.com/@multiformats/multiaddr-to-uri/-/multiaddr-to-uri-9.0.7.tgz#44881352b1d9d98b53451982cd433f0f45ad7e24"
@@ -2875,6 +2887,11 @@
   dependencies:
     "@typescript-eslint/types" "5.60.0"
     eslint-visitor-keys "^3.3.0"
+
+"@upload-io/upload-api-client-upload-js@^2.15.0":
+  version "2.15.0"
+  resolved "https://registry.yarnpkg.com/@upload-io/upload-api-client-upload-js/-/upload-api-client-upload-js-2.15.0.tgz#172cf92805f5bbc74a30172f5f1dc6841bd6ae9e"
+  integrity sha512-UGqT4wxCDhTTKnTLvqtKCyPJSswA2z6/Z6/sMakWGdJBBuwCHcOyXgoWafbPILrgWp3oMMQjnTfwwMBmR0O54w==
 
 "@webassemblyjs/ast@1.11.6", "@webassemblyjs/ast@^1.11.5":
   version "1.11.6"
@@ -3940,7 +3957,7 @@ class-is@^1.1.0:
   resolved "https://registry.yarnpkg.com/class-is/-/class-is-1.1.0.tgz#9d3c0fba0440d211d843cec3dedfa48055005825"
   integrity sha512-rhjH9AG1fvabIDoGRVH587413LPjTZgmDF9fOFCbFJQV4yuocX1mHxxvXI4g3cGwbVY9wAYIoKlg1N79frJKQw==
 
-classnames@^2.2.5:
+classnames@^2.2.5, classnames@^2.2.6:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.2.tgz#351d813bf0137fcc6a76a16b88208d2560a0d924"
   integrity sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==
@@ -4421,6 +4438,11 @@ data-urls@^2.0.0:
     abab "^2.0.3"
     whatwg-mimetype "^2.3.0"
     whatwg-url "^8.0.0"
+
+dayjs@^1.11.9:
+  version "1.11.9"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.9.tgz#9ca491933fadd0a60a2c19f6c237c03517d71d1a"
+  integrity sha512-QvzAURSbQ0pKdIye2txOzNaHmxtUBXerpY0FJsFXUMKbIZeFm5ht1LS/jFsrncjnmtv8HsG0W2g6c0zUjZWmpA==
 
 debug@2.6.9, debug@^2.6.0:
   version "2.6.9"
@@ -7514,6 +7536,11 @@ lodash.debounce@^4.0.8:
   resolved "https://registry.npmjs.org/lodash.debounce/-/lodash.debounce-4.0.8.tgz"
   integrity sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==
 
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+  integrity sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==
+
 lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.npmjs.org/lodash.memoize/-/lodash.memoize-4.1.2.tgz"
@@ -9091,6 +9118,11 @@ postcss@^8.3.5, postcss@^8.4.21, postcss@^8.4.23, postcss@^8.4.4:
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
+preact@^10.6.5:
+  version "10.16.0"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.16.0.tgz#68a06d70b191b8a313ea722d61e09c6b2a79a37e"
+  integrity sha512-XTSj3dJ4roKIC93pald6rWuB2qQJO9gO2iLLyTe87MrjQN+HklueLsmskbywEWqCHlclgz3/M4YLL2iBr9UmMA==
+
 prelude-ls@^1.2.1:
   version "1.2.1"
   resolved "https://registry.npmjs.org/prelude-ls/-/prelude-ls-1.2.1.tgz"
@@ -9151,6 +9183,11 @@ process@^0.11.1:
   version "0.11.10"
   resolved "https://registry.yarnpkg.com/process/-/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
   integrity sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A==
+
+progress-smoother@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/progress-smoother/-/progress-smoother-1.4.0.tgz#6a865c5c788118082aca5514f72a3f46227e0f3c"
+  integrity sha512-ctIG/KF/3DQ1zQHMWbXjcnicggTsEzZEA2JEnJNrPtK88tmqN9cfQf01yfLWGCBF93R5XN1EUe/z/IV5NKrmCw==
 
 promise-inflight@^1.0.1:
   version "1.0.1"
@@ -9502,6 +9539,14 @@ react-transition-group@^4.4.5:
     dom-helpers "^5.0.1"
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
+
+react-uploader@^3.37.0:
+  version "3.37.0"
+  resolved "https://registry.yarnpkg.com/react-uploader/-/react-uploader-3.37.0.tgz#6d5ba05632b86a321602fb5a0cc01b42ec98203e"
+  integrity sha512-XmpnL0LbPJkID5usjjoRRPVOibqE/a09511ARK/yEYv0OQoIyhfw16h90A6y/j0hUiP8/224swyuWJxsfjLujA==
+  dependencies:
+    lodash.isequal "^4.5.0"
+    uploader "^3.37.0"
 
 react@^18.2.0:
   version "18.2.0"
@@ -10975,6 +11020,23 @@ update-browserslist-db@^1.0.11:
   dependencies:
     escalade "^3.1.1"
     picocolors "^1.0.0"
+
+upload-js@^2.20.0:
+  version "2.20.0"
+  resolved "https://registry.yarnpkg.com/upload-js/-/upload-js-2.20.0.tgz#b8a27f0d5f7c6658ef96f45b8b1521b6b9636740"
+  integrity sha512-pwu7NejaJrqQrv8w4gfYRLlqgzJXggZs7pleV2kMHL/n8mCDWTX19j5WS/+bBZbtuGTZLtWjt+HJtyxXxiumIA==
+  dependencies:
+    "@upload-io/upload-api-client-upload-js" "^2.15.0"
+    progress-smoother "^1.4.0"
+
+uploader@^3.37.0:
+  version "3.37.0"
+  resolved "https://registry.yarnpkg.com/uploader/-/uploader-3.37.0.tgz#425fa31a437e7b899b4d6f4c92024bbb5693000d"
+  integrity sha512-2ugcDRXKEszsL0HhsLjl8wuu8JY2gguM4FE+4lN/SGkSdlrXHsjrWqplsSY9vgNV/hKBv41CUP/aaWqjEsZUYg==
+  dependencies:
+    classnames "^2.2.6"
+    preact "^10.6.5"
+    upload-js "^2.20.0"
 
 uri-js@^4.2.2:
   version "4.4.1"

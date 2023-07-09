@@ -6,7 +6,7 @@ import React, { useState, useRef } from "react";
 import { TextField, Button, Avatar, Input } from '@mui/material';
 import axios from "axios";
 import { FaCamera } from 'react-icons/fa';
-import {toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -126,83 +126,86 @@ const User = () => {
     //     console.error("Lỗi truy cập camera:", error);
     // };
     return (
-        <div className='user'>
-            <div className="user__camera">
-                <button className="camera-button" onClick={openCamera}>
-                    <FaCamera className="camera-icon" />
-                    Mở camera
-                </button>
-            </div>
-            <div className="user__title" onClick={fetchdata}>
-                <h1>THÔNG TIN NGƯỜI DÙNG</h1>
-            </div>
-            <div className='user__field1'>
-                <Avatar className="user__avatar" alt="Remy Sharp" src={avatarchange} sx={{ width: 200, height: 200 }} style={{ border: 0 }} />
-                <div className="user__avatarchange">
-                    <Input
-                        type="file"
-                        onChange={handleFileChange}
-                        accept="image/*"
-                    />
+        <section className='user-page'>
+            <div className='user'>
+                <div className="user__camera">
+                    <button className="camera-button" onClick={openCamera}>
+                        <FaCamera className="camera-icon" />
+                        Mở camera
+                    </button>
                 </div>
-                <form ref={form1Ref} onSubmit={handleSubmit1}>
-                    <Button type="submit" variant="contained" color="primary" fullWidth>
-                        Change avatar
-                    </Button>
-                </form>
+                <div className="user__title" onClick={fetchdata}>
+                    <h1>THÔNG TIN NGƯỜI DÙNG</h1>
+                </div>
+                <div className='user__field1'>
+                    <Avatar className="user__avatar" alt="Remy Sharp" src={avatarchange} sx={{ width: 200, height: 200 }} style={{ border: 0 }} />
+                    <div className="user__avatarchange">
+                        <Input
+                            type="file"
+                            onChange={handleFileChange}
+                            accept="image/*"
+                        />
+                    </div>
+                    <form ref={form1Ref} onSubmit={handleSubmit1}>
+                        <Button type="submit" variant="contained" color="primary" fullWidth>
+                            Change avatar
+                        </Button>
+                    </form>
+                </div>
+                <div className='user__field2'>
+                    <form ref={form2Ref} onSubmit={handleSubmit2}>
+                        <TextField
+                            id="firstname"
+                            label="Firstname"
+                            type="text"
+                            value={firstname}
+                            onChange={(e) => setFirstname(e.target.value)}
+                            variant="outlined"
+                            margin="normal"
+                            size="small"
+                            fullWidth
+                        />
+                        <TextField
+                            id="lastname"
+                            label="Lastname"
+                            type="text"
+                            value={lastname}
+                            onChange={(e) => setLastname(e.target.value)}
+                            variant="outlined"
+                            margin="normal"
+                            size="small"
+                            fullWidth
+                        />
+                        <TextField
+                            id="email"
+                            label="Email"
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            variant="outlined"
+                            margin="normal"
+                            size="small"
+                            fullWidth
+                        />
+                        <TextField
+                            id="phonenumber"
+                            label="Phonenumber"
+                            type="text"
+                            value={phonenumber}
+                            onChange={(e) => setPhonenumber(e.target.value)}
+                            variant="outlined"
+                            margin="normal"
+                            size="small"
+                            fullWidth
+                        />
+                        <Button type="submit" variant="contained" color="primary">
+                            Change information
+                        </Button>
+                    </form>
+                </div>
             </div>
-            <div className='user__field2'>
-                <form ref={form2Ref} onSubmit={handleSubmit2}>
-                    <TextField
-                        id="firstname"
-                        label="Firstname"
-                        type="text"
-                        value={firstname}
-                        onChange={(e) => setFirstname(e.target.value)}
-                        variant="outlined"
-                        margin="normal"
-                        size="small"
-                        fullWidth
-                    />
-                    <TextField
-                        id="lastname"
-                        label="Lastname"
-                        type="text"
-                        value={lastname}
-                        onChange={(e) => setLastname(e.target.value)}
-                        variant="outlined"
-                        margin="normal"
-                        size="small"
-                        fullWidth
-                    />
-                    <TextField
-                        id="email"
-                        label="Email"
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        variant="outlined"
-                        margin="normal"
-                        size="small"
-                        fullWidth
-                    />
-                    <TextField
-                        id="phonenumber"
-                        label="Phonenumber"
-                        type="text"
-                        value={phonenumber}
-                        onChange={(e) => setPhonenumber(e.target.value)}
-                        variant="outlined"
-                        margin="normal"
-                        size="small"
-                        fullWidth
-                    />
-                    <Button type="submit" variant="contained" color="primary">
-                        Change information
-                    </Button>
-                </form>
-            </div>
-        </div>
+        </section>
+
     );
 }
 
