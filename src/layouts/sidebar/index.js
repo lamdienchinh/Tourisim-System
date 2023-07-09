@@ -35,9 +35,6 @@ const Sidebar = () => {
     const dispatch = useDispatch();
     const [clogout, setClogout] = useState(false);
 
-    const handleClickOpen = () => {
-        setClogout(true);
-    };
 
     const handleClose = (event, check) => {
         if (check) {

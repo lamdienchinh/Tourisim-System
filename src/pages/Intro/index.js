@@ -1,163 +1,71 @@
-import React from 'react';
-import './css/Intro.scss';
-import 'react-alice-carousel/lib/alice-carousel.css';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import img from "../../assets/imgs/doanhnghiep.jpg"
-import Slider from "react-slick";
-import Container from '@mui/material/Container';
-import { Avatar } from "@mui/material"
-// import { ImageList, ImageListItem, Paper } from "@mui/material";
-import chinh from "../../assets/imgs/chinh.jpg";
-import duy from "../../assets/imgs/duy.jpg";
+import "./css/Intro.scss";
+import plane from "../../assets/imgs/plane.png"
+import img from "../../assets/imgs/logo1.png"
+import { Card, Avatar, CardContent } from '@mui/material';
 
 const Intro = () => {
-    // Dữ liệu của slider banner
-    const handleDragStart = (e) => e.preventDefault();
-
-    const items = [
-        <img src={img} onDragStart={handleDragStart} role="presentation" />,
-        <img src={img} onDragStart={handleDragStart} role="presentation" />,
-        <img src={img} onDragStart={handleDragStart} role="presentation" />,
-    ];
-
-    const settings = {
-        className: "center",
-        dots: true,
-        infinite: true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        centerMode: true,
-        centerPadding: "0px"
-    };
-    // Dữ liệu của danh sách nhân viên
-    // const employees = [
-    //     {
-    //         name: 'John Doe',
-    //         position: 'CEO',
-    //         image: 'employee1.jpg',
-    //     },
-    //     {
-    //         name: 'Jane Smith',
-    //         position: 'CTO',
-    //         image: 'employee2.jpg',
-    //     },
-    //     // Thêm các nhân viên khác...
-    // ];
-    let listimg = [chinh, duy];
-    // Dữ liệu thông tin công ty
-    const companyInfo = {
-        name: 'Our Company',
-        address: '123 Main St, City, Country',
-        phone: '+1 234 567 890',
-        email: 'info@company.com',
-    };
-
-    // Dữ liệu phản hồi từ khách hàng
-    const customerFeedback = [
-        {
-            name: 'John Smith',
-            comment: 'I am extremely satisfied with the services provided by Our Company. Highly recommended!',
-        },
-        {
-            name: 'Emily Johnson',
-            comment: 'The team at Our Company has been a pleasure to work with. They are professional and efficient.',
-        },
-        // Thêm phản hồi khác...
-    ];
     return (
-        <div className="about-us-container">
-            <div className="slider-banner">
-                <Slider {...settings}>
-                    <div>
-                        <img src={img} />
+        <div className="intro-wrapper">
+            <section className="intro-first">
+                <div className="bg-img">
+                    <div className="intro-logo">
+                        <img src={img}></img>
                     </div>
-                    <div>
-                        <img src={img} />
-                    </div>
-                    <div>
-                        <img src={img} />
-                    </div>
-                    <div>
-                        <img src={img} />
-                    </div>
-                </Slider>
-                {/* <AliceCarousel renderPrevButton mouseTracking={true} disableDotsControls disableButtonsControls responsive autoWidth={true} animationDuration={1000} items={items} autoPlayInterval={1000} autoPlay={true} infinite={true} /> */}
-            </div>
-            <Container maxWidth="lg">
-                <div className="about-us-content">
-                    <h2 className="section-title">Về sản phẩm</h2>
-                    <p className="section-description">
-                        {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris malesuada purus id mauris tristique, sed
-                        condimentum sem eleifend. Donec nec ante et lectus consectetur feugiat nec vitae ligula. Quisque id turpis
-                        augue. Duis nec fringilla lectus, id commodo mauris. Nunc nec tortor id mi pellentesque lacinia. Etiam posuere
-                        est vel faucibus viverra. Sed semper malesuada turpis sed ullamcorper. Phasellus facilisis neque in nunc
-                        scelerisque pulvinar. Suspendisse sit amet aliquam neque, in varius mi. */}
-                        Đây là một ứng dụng sổ tay du lịch áp dụng công nghệ Blockchain.
-                        Trên đây người dùng có thể tìm kiếm các địa điểm du lịch một cách xác thực và an toàn thông qua việc checkin thực tế bằng quét mã QR.
-                        Ngoài ra người dùng cũng có thể lưu giữ kỷ niệm sau mỗi chuyến hành trình và có thể xem lại bất cứ lúc nào.
-                        Sản phẩm đang trong quá trình hoàn thiện, mong nhận được nhiều góp ý hơn.
-                    </p>
-                </div>
-
-                <div className="team-section">
-                    <h2 className="section-title">Thành viên thực hiện</h2>
-                    <div className="employees-container">
-                        <Avatar
-                            alt="Remy Sharp"
-                            src={chinh}
-                            sx={{ width: 400, height: 400 }}
-                        />
-                        <Avatar
-                            alt="Remy Sharp"
-                            src={duy}
-                            sx={{ width: 400, height: 400 }}
-                        />
-                        {/* Hiển thị danh sách nhân viên */}
-                        {/* <ImageList sx={{ width: 600, height: 200 }} cols={3} rowHeight={164}>
-                            {listimg && listimg.map((item, index) => (
-                                <ImageListItem key={item}>
-                                    <img
-                                        src={`${item}?w=161&fit=crop&auto=format`}
-                                        srcSet={`${item}?w=161&fit=crop&auto=format&dpr=2 2x`}
-                                        alt={`Đây là ảnh thứ ${index}`}
-                                        loading="lazy"
-                                    />
-                                </ImageListItem>
-                            ))}
-                        </ImageList> */}
+                    <div className="intro-plane"><img src={plane}></img></div>
+                    <div className="intro-content">
+                        <h1>TOURDC</h1>
+                        <h6>Ứng dụng du lịch áp dụng công nghệ Blockchain</h6>
+                        <button className="intro-tohome" onClick={() => window.location.replace('/home')}>Khám phá ngay</button>
                     </div>
                 </div>
-
-                <div className="company-info-section">
-                    <h2 className="section-title">Thông tin liên hệ</h2>
-                    <ul className="company-info-list">
-                        <li>
-                            <strong>Name:</strong> {companyInfo.name}
-                        </li>
-                        <li>
-                            <strong>Address:</strong> {companyInfo.address}
-                        </li>
-                        <li>
-                            <strong>Phone:</strong> {companyInfo.phone}
-                        </li>
-                        <li>
-                            <strong>Email:</strong> {companyInfo.email}
-                        </li>
-                    </ul>
+            </section>
+            <section className="intro-two">
+                <div className="intro-two__title">
+                    <h1>Các vấn đề đặt ra trong ngành du lịch Việt Nam hiện nay</h1>
                 </div>
-
-                <div className="customer-feedback-section">
-                    <h2 className="section-title">Feedback của người dùng</h2>
-                    <div className="feedback-container">
-                        {/* Hiển thị các phản hồi từ khách hàng */}
+                <div className="intro-two__contentlist">
+                    <div className="intro-problem">
+                        <div className="problem-number">
+                            1
+                        </div>
+                        Việc khai thác chưa hiệu quả tiềm năng phát triển của các địa điểm du lịch
+                    </div>
+                    <div className="intro-problem">
+                        <div className="problem-number">
+                            2
+                        </div>
+                        Vấn nạn reviews sai sự thật, marketing gây ảnh hưởng vô cùng lớn đến trải nghiệm của khách du lịch
+                    </div>
+                    <div className="intro-problem">
+                        <div className="problem-number">
+                            3
+                        </div>
+                        Vấn đề ứng dụng công nghệ thông tin trong du lịch chưa được phổ biến
                     </div>
                 </div>
-            </Container>
-        </div>
+            </section>
+            <section className="intro-three">
+                <div className="intro-three__title">
+                    <h1>Những điểm đến phổ biến</h1>
+                    <h4>Đây là những địa điểm được nhiều người đánh giá nhất trong tháng này</h4>
+                </div>
+                <div className="intro-three-places">
+                    <div className="popular-place pp1">
+                       
+                    </div>
+                    <div className="popular-place pp2">
+                        
+                    </div >
+                    <div className="popular-place pp3">
+                       
+                    </div>
+                    <div className="popular-place pp4">
+                        
+                    </div >
+                </div>
+            </section >
+        </div >
     );
-};
+}
 
 export default Intro;

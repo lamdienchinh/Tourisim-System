@@ -141,6 +141,9 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="home__results">
+                    <div className="home__results--pagination">
+                        <Pagination count={totalPages} onChange={handlePageChange} showFirstButton showLastButton />
+                    </div>
                     <div className="home__results--1">
                         {row1 && row1.map((item, itemIndex) => (
                             <PlaceThumbnail place={item}></PlaceThumbnail>
@@ -160,9 +163,6 @@ const Home = () => {
                         {row4 && row4.map((item, itemIndex) => (
                             <PlaceThumbnail place={item}></PlaceThumbnail>
                         ))}
-                    </div>
-                    <div className="home__results--pagination">
-                        <Pagination count={totalPages} onChange={handlePageChange} showFirstButton showLastButton />
                     </div>
                 </div>
             </Container>

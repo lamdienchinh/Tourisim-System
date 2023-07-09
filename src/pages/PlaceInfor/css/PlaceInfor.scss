@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rokkitt&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Rokkitt&display=swap");
 
 .placeinfor {
     min-height: 800px;
@@ -7,7 +7,7 @@
     & .placeinfor__slide {
         position: relative;
         background-size: contain;
-        &>img {
+        & > img {
             width: 100%;
         }
     }
@@ -25,9 +25,9 @@
         justify-content: center;
         position: relative;
         color: white;
-        top: 30px;   
-        font-size: 160px;    
-        font-family: 'Rokkitt', serif;
+        top: 30px;
+        font-size: 160px;
+        font-family: "Rokkitt", serif;
     }
     & .placeinfor__suggest {
         width: 100%;
@@ -36,7 +36,7 @@
         justify-content: center;
         position: absolute;
         bottom: 30px;
-        &>div {
+        & > div {
             width: 20%;
             display: flex;
             flex-direction: row;
@@ -47,7 +47,7 @@
                 justify-content: center;
                 & div {
                     font-size: 18px;
-                    font-family: 'Rokkitt', serif;
+                    font-family: "Rokkitt", serif;
                     font-weight: 400;
                     color: white;
                 }
@@ -68,7 +68,7 @@
     & .placeinfor__rate {
         & svg {
             color: rgb(249, 249, 14);
-            padding: 10px;
+            padding: 2px;
         }
         & .placeinfor__rate--title {
             font-size: 28px;
@@ -76,7 +76,8 @@
             padding-left: 20px;
         }
         & .placeinfor__rate--star {
-            font-size: 30px;
+            font-size: 2rem;
+            padding-left: 20px;
         }
     }
 }
@@ -107,11 +108,11 @@
     justify-content: center;
     flex-direction: column;
     width: 100%;
-    &>div {
+    & > div {
         padding: 20px;
         padding-right: 0px;
     }
-    & .placeinfor__rv--1{
+    & .placeinfor__rv--1 {
         margin: 0px 10px 0px 10px;
         border-top: 1px solid rgb(182, 181, 181);
         font-size: 40px;
@@ -126,10 +127,10 @@
     & .placeinfor__filter {
         display: flex;
         justify-content: flex-start;
-        &>div {
+        & > div {
             width: 14%;
             height: 20px;
-            &>div {
+            & > div {
                 height: 20px;
             }
         }
@@ -149,7 +150,6 @@
             width: 100%;
         }
     }
-
 }
 .placeinfor__rate--address {
     padding-left: 20px;
