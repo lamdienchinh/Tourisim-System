@@ -1,14 +1,23 @@
 /* CSS for CreateAlbum component */
 .createalbum {
-    padding: 80px;
-    padding-top: 20px;
+    padding-top: 0px;
+    padding-bottom: 100px;
     & > div {
         display: flex;
         flex-direction: row;
-        justify-content: center;    
+        justify-content: center;
+    }
+    & .createalbum-address {
+        justify-content: flex-start;
+        padding-bottom: 50px;
+    }
+    & .createalbum-location {
+        color: blue;
+        font-weight: 400;
+        cursor: pointer;
     }
     & .createalbum__left {
-        width: 70%;
+        width: 100%;
         & .form-container {
             margin-bottom: 20px;
             & #filled-size-normal {
@@ -20,7 +29,7 @@
             margin-top: 0;
         }
 
-        & .form-container form {
+        & .form-container > div {
             display: grid;
             padding-bottom: 20px;
             gap: 10px;
@@ -38,8 +47,12 @@
         }
     }
     & .createalbum__right {
+        padding-top: 160px;
         padding-left: 20px;
         width: 20%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     & button {
         background-color: #007bff;
@@ -67,13 +80,18 @@
 
 .places-list div {
     cursor: pointer;
-    padding: 5px;
+    padding: 20px;
     margin-bottom: 5px;
     background-color: #f2f2f2;
 }
 
 .places-list div:hover {
     background-color: #e6e6e6;
+}
+.selected-places {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .selected-places div {
@@ -85,7 +103,7 @@
     margin-bottom: 5px;
 }
 .place-button {
-    margin-left : 10px;
+    margin-left: 10px;
 }
 
 .trip-button {

@@ -50,37 +50,7 @@
     padding-bottom: 20px;
     grid-area: tt;
 }
-.user__camera {
-    grid-area: c1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
-.camera-button {
-    width: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    background-color: #ffffff;
-    border: 1px solid #999999;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #333333;
-    cursor: pointer;
-}
 
-.camera-icon {
-    margin-right: 5px;
-}
-
-.camera-button:hover {
-    background-color: #f2f2f2;
-    color: #ff0000;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-}
-
-.camera-button:hover .camera-icon {
-    color: #ff0000;
+.user-location {
+    padding-bottom: 30px;
 }

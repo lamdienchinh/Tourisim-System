@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { TextField, Grid, Paper, Input, Rating, Checkbox, Typography, ImageList, ImageListItem } from "@mui/material";
+import React, { useState } from 'react';
+import { TextField, Paper, Rating, Checkbox, Typography, ImageList, ImageListItem } from "@mui/material";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./css/CreateAlbum.scss"
 import Container from '@mui/material/Container';
-import axios from 'axios';
-
+// import axios from 'axios';
+import img from "../../assets/imgs/place1.png"
 
 const CreateAlbum = () => {
     const [places, setPlaces] = useState([
@@ -41,7 +41,7 @@ const CreateAlbum = () => {
     const [selectedTrips, setSelectedTrips] = useState([]);
     const [currentPlace, setCurrentPlace] = useState(null);
     const [currentTrip, setCurrentTrip] = useState(null);
-    const [imgs, setImgs] = useState([]);
+    const [imgs] = useState([img, img, img, img]);
     const [albumData, setAlbumData] = useState([]);
 
     const handlePlaceClick = (place) => {
@@ -133,50 +133,50 @@ const CreateAlbum = () => {
         }
     };
 
-    const [selectedImages, setSelectedImages] = useState([]);
-    const uploadImagesToCloudinary = async (files) => {
-        // Push all the axios request promise into a single array
-        try {
-            let result = []
-            for (const file of files) {
-                const formData = new FormData();
-                formData.append("file", file);
-                formData.append("upload_preset", "x98iyyfc");
-                let temp = await axios.post("https://api.cloudinary.com/v1_1/dfoj6menm/image/upload", formData, {
-                    headers: { "X-Requested-With": "XMLHttpRequest" },
-                })
-                result.push(temp.data.secure_url);
-                // console.log(temp);
-                setImgs((prevImgs) => [...prevImgs, temp?.data?.secure_url]);
-            }
-            return result;
-        }
-        catch (err) {
-            console.log("Không thể tải ảnh", err)
-            toast.error('Không thể tải ảnh')
-        }
-    }
+    // const [selectedImages, setSelectedImages] = useState([]);
+    // const uploadImagesToCloudinary = async (files) => {
+    //     // Push all the axios request promise into a single array
+    //     try {
+    //         let result = []
+    //         for (const file of files) {
+    //             const formData = new FormData();
+    //             formData.append("file", file);
+    //             formData.append("upload_preset", "x98iyyfc");
+    //             let temp = await axios.post("https://api.cloudinary.com/v1_1/dfoj6menm/image/upload", formData, {
+    //                 headers: { "X-Requested-With": "XMLHttpRequest" },
+    //             })
+    //             result.push(temp.data.secure_url);
+    //             // console.log(temp);
+    //             setImgs((prevImgs) => [...prevImgs, temp?.data?.secure_url]);
+    //         }
+    //         return result;
+    //     }
+    //     catch (err) {
+    //         console.log("Không thể tải ảnh", err)
+    //         toast.error('Không thể tải ảnh')
+    //     }
+    // }
 
-    const handleImageUpload = async (event) => {
-        const files = event.target.files;
-        setSelectedImages(files)
-    };
+    // const handleImageUpload = async (event) => {
+    //     const files = event.target.files;
+    //     setSelectedImages(files)
+    // };
 
-    const handleSave = async () => {
-        const uploadedImages = await uploadImagesToCloudinary(selectedImages);
-        setCurrentTrip({ ...currentTrip, images: imgs })
-        if (uploadedImages)
-            console.log(uploadedImages)
-        console.log("tripdata", { ...currentTrip, images: uploadedImages });
-        // if (currentPlace && currentTrip) {
-        //     const { title, thoughts, image } = currentPlace;
-        //     const { tripTitle, time, rating } = currentTrip;
-        //     setAlbumData([...albumData, { title, thoughts, image, tripTitle, time, rating, imgs }]);
-        //     setCurrentPlace(null);
-        //     setCurrentTrip(null);
-        // }
-        toast.success('Lưu cảm nghĩ thành công !')
-    };
+    // const handleSave = async () => {
+    //     const uploadedImages = await uploadImagesToCloudinary(selectedImages);
+    //     setCurrentTrip({ ...currentTrip, images: imgs })
+    //     if (uploadedImages)
+    //         console.log(uploadedImages)
+    //     console.log("tripdata", { ...currentTrip, images: uploadedImages });
+    //     // if (currentPlace && currentTrip) {
+    //     //     const { title, thoughts, image } = currentPlace;
+    //     //     const { tripTitle, time, rating } = currentTrip;
+    //     //     setAlbumData([...albumData, { title, thoughts, image, tripTitle, time, rating, imgs }]);
+    //     //     setCurrentPlace(null);
+    //     //     setCurrentTrip(null);
+    //     // }
+    //     toast.success('Lưu cảm nghĩ thành công !')
+    // };
 
     const handleCreateAlbum = async (event) => {
         event.preventDefault();
@@ -189,7 +189,10 @@ const CreateAlbum = () => {
             <Container maxWidth="lg">
                 <div className="createalbum__left">
                     <div className="createalbum__header">
-                        <button onClick={() => window.location.href = '/album'}>Quay lại</button>
+                        <div className="createalbum-address">
+                            <span className="createalbum-location" onClick={() => window.location.href = '/album'}>Album</span>
+                            <span> / CreateAlbum</span>
+                        </div>
                     </div>
                     <h2>Create Album</h2>
                     <div className="places-list">
@@ -229,11 +232,23 @@ const CreateAlbum = () => {
 
                     {currentTrip && (
                         <div className="form-container">
-                            <h3>Add Content for {currentTrip.title}</h3>
-                            <form>
+                            <h3>{currentTrip.title}</h3>
+                            <div>
                                 <Typography>Thời gian: {currentTrip.time} </Typography>
                                 <label>
+                                    Rating:
+                                    <Rating
+                                        name="rating"
+                                        value={currentTrip.rating}
+                                        onChange={(event, newValue) =>
+                                            setCurrentTrip({ ...currentTrip, rating: newValue })
+                                        }
+                                        readOnly
+                                    />
+                                </label>
+                                <label>
                                     <TextField
+                                        disabled
                                         id="filled-size-normal"
                                         label="TIÊU ĐỀ"
                                         size='medium'
@@ -245,9 +260,10 @@ const CreateAlbum = () => {
                                 </label>
                                 <label>
                                     <TextField
+                                        disabled
                                         id="outlined-controlled"
                                         label="CẢM NGHĨ"
-                                        value={currentTrip.thoughts}
+                                        value={`${currentTrip.thoughts} Hello`}
                                         multiline
                                         onChange={(e) =>
                                             setCurrentTrip({ ...currentTrip, thoughts: e.target.value })
@@ -256,22 +272,25 @@ const CreateAlbum = () => {
                                 </label>
                                 <label>
                                     Image:
-                                    <Grid container spacing={2}>
+                                    {/* <Grid container spacing={2}>
                                         <Grid item xs={12}>
                                             <Input
                                                 type="file"
                                                 inputProps={{ multiple: true }}
                                                 onChange={handleImageUpload}
+                                                text="Nhập ảnh"
                                             />
                                         </Grid>
-                                    </Grid>
-                                    <ImageList cols={4}>
-                                        {selectedImages && Array.from(selectedImages).map((image, index) => (
+                                    </Grid> */}
+                                    <ImageList sx={{ width: 800, height: 450 }} cols={3} rowHeight={164}>
+                                        {imgs && imgs.map((image, index) => (
                                             <ImageListItem key={index}>
                                                 <Paper>
                                                     <img
-                                                        src={URL.createObjectURL(image)}
-                                                        alt={`Image ${index}`}
+                                                        src={`${image}?w=164&h=164&fit=crop&auto=format`}
+                                                        srcSet={`${image}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                                                        alt={`Hình ${index}`}
+                                                        loading="lazy"
                                                         style={{ width: '100%' }}
                                                     />
                                                 </Paper>
@@ -288,18 +307,8 @@ const CreateAlbum = () => {
                                         ))}
                                     </Grid> */}
                                 </label>
-                                <label>
-                                    Rating:
-                                    <Rating
-                                        name="rating"
-                                        value={currentTrip.rating}
-                                        onChange={(event, newValue) =>
-                                            setCurrentTrip({ ...currentTrip, rating: newValue })
-                                        }
-                                    />
-                                </label>
-                            </form>
-                            <button onClick={handleSave}>Save</button>
+                            </div>
+                            {/* <button onClick={handleSave}>Lưu</button> */}
                         </div>
                     )}
                 </div>
@@ -307,15 +316,14 @@ const CreateAlbum = () => {
                     <h3>Selected Places</h3>
                     <button onClick={(event) => handleCreateAlbum(event)}>Tạo Album</button>
                     <div className="selected-places">
-                        <ul>
-                            {selectedTrips.map((trip) => (
-                                <li key={trip.title}>{trip.title}</li>
-                            ))}
-                        </ul>
+                        <h3>Các trips đã chọn</h3>
+                        {selectedTrips.map((trip) => (
+                            <div key={trip.title}>{trip.title}</div>
+                        ))}
                     </div>
                 </div>
-            </Container>
-        </div>
+            </Container >
+        </div >
     );
 };
 

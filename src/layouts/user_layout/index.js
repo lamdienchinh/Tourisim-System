@@ -8,9 +8,6 @@ const UserLayout = () => {
     return (
         <div className="userlayout">
             <Header></Header>
-            <div className="userlayout__sidebar">
-                <Sidebar></Sidebar>
-            </div>
             <div className="userlayout__body">
                 <Outlet></Outlet>
             </div>

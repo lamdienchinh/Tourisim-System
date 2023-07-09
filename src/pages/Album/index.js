@@ -73,63 +73,65 @@ const Album = () => {
     return (
         <div className="album">
             <Container maxWidth="lg">
-                <div className="album__col col1">
-                    <h1>Thêm Album & Xem các chuyến đi</h1>
-                    <div className="album__button__list">
-                        <button className="album__button" onClick={handleAddAlbum}>
-                            Thêm Album
-                        </button>
-                        <button className="album__button" onClick={handleTrip}>
-                            Xem Trips
-                        </button>
-                    </div>
-                    <h1>Sắp xếp</h1>
-                    <FormControl fullWidth className="album-filter">
-                        <InputLabel variant="standard" htmlFor="uncontrolled-native">Tên tiêu đề</InputLabel>
-                        <NativeSelect
-                            defaultValue={1}
-                        // onChange={handleChange}
-                        >
-                            <option value={1}>A-Z ASC</option>
-                            <option value={2}>Z-A DASC</option>
-                        </NativeSelect>
-                    </FormControl>
-                    <FormControl fullWidth className="album-filter">
-                        <InputLabel variant="standard" htmlFor="uncontrolled-native">Ngày tạo</InputLabel>
-                        <NativeSelect
-                            defaultValue={1}
-                        // onChange={handleChange}
-                        >
-                            <option value={1}>Mới nhất</option>
-                            <option value={2}>Cũ nhất</option>
-                        </NativeSelect>
-                    </FormControl>
-                    <h1>Chọn ngày tạo</h1>
-                    <div>
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DemoContainer components={['DateTimePicker']}>
-                                <DateTimePicker
-                                    label="Chọn ngày"
-                                    value={value}
-                                    onChange={(newValue) => setValue(newValue)}
-                                />
-                            </DemoContainer>
-                        </LocalizationProvider>
-                    </div>
-                </div>
-                <div className="album__col col2">
-                    <div className="album__results">
-                        <div className="album__results--1">
-                            {row1.map((item, itemIndex) => (
-                                <AlbumThumbnail key={itemIndex} place={item} />
-                            ))}
+                <div className="album-location">Album</div>
+                <div className="album-wrapper">
+                    <div className="album__col col1">
+                        <h1>Thêm Album & Xem các chuyến đi</h1>
+                        <div className="album__button__list">
+                            <button className="album__button" onClick={handleAddAlbum}>
+                                Thêm Album
+                            </button>
+                            <button className="album__button" onClick={handleTrip}>
+                                Xem Trips
+                            </button>
                         </div>
-                        <div className="album__results--2">
-                            {row2.map((item, itemIndex) => (
-                                <AlbumThumbnail key={itemIndex} place={item} />
-                            ))}
+                        <h1>Sắp xếp</h1>
+                        <FormControl fullWidth className="album-filter">
+                            <InputLabel variant="standard" htmlFor="uncontrolled-native">Tên tiêu đề</InputLabel>
+                            <NativeSelect
+                                defaultValue={1}
+                            // onChange={handleChange}
+                            >
+                                <option value={1}>A-Z ASC</option>
+                                <option value={2}>Z-A DASC</option>
+                            </NativeSelect>
+                        </FormControl>
+                        <FormControl fullWidth className="album-filter">
+                            <InputLabel variant="standard" htmlFor="uncontrolled-native">Ngày tạo</InputLabel>
+                            <NativeSelect
+                                defaultValue={1}
+                            // onChange={handleChange}
+                            >
+                                <option value={1}>Mới nhất</option>
+                                <option value={2}>Cũ nhất</option>
+                            </NativeSelect>
+                        </FormControl>
+                        <h1>Chọn ngày tạo</h1>
+                        <div>
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <DemoContainer components={['DateTimePicker']}>
+                                    <DateTimePicker
+                                        label="Chọn ngày"
+                                        value={value}
+                                        onChange={(newValue) => setValue(newValue)}
+                                    />
+                                </DemoContainer>
+                            </LocalizationProvider>
                         </div>
-                        {/* <div className="album__results--3">
+                    </div>
+                    <div className="album__col col2">
+                        <div className="album__results">
+                            <div className="album__results--1">
+                                {row1.map((item, itemIndex) => (
+                                    <AlbumThumbnail key={itemIndex} place={item} />
+                                ))}
+                            </div>
+                            <div className="album__results--2">
+                                {row2.map((item, itemIndex) => (
+                                    <AlbumThumbnail key={itemIndex} place={item} />
+                                ))}
+                            </div>
+                            {/* <div className="album__results--3">
                             {row3.map((item, itemIndex) => (
                                 <AlbumThumbnail key={itemIndex} place={item} />
                             ))}
@@ -139,8 +141,9 @@ const Album = () => {
                                 <AlbumThumbnail key={itemIndex} place={item} />
                             ))}
                         </div> */}
-                        <div className="album__results--pagination">
-                            <Pagination count={totalPages} onChange={handlePageChange} showFirstButton showLastButton />
+                            <div className="album__results--pagination">
+                                <Pagination count={totalPages} onChange={handlePageChange} showFirstButton showLastButton />
+                            </div>
                         </div>
                     </div>
                 </div>

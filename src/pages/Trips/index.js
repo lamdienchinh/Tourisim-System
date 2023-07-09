@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Pagination, Box, Typography, ImageList, ImageListItem, Rating, Button, NativeSelect, InputLabel, FormControl } from '@mui/material';
+import { Container, Pagination, Box, ImageList, ImageListItem, Button, NativeSelect, InputLabel, FormControl } from '@mui/material';
 import Trip from "../../components/trip";
 import trips from "../../constants";
 import "./css/Trips.scss";
@@ -32,6 +32,7 @@ const Trips = () => {
     const [select, setSelect] = useState(1);
     const [selectTrip, setSelectTrip] = useState();
     const [style, setStyle] = useState()
+    console.log(style);
     // const [getplace, setGetPlaces] = useState(0);
     // const [trips, setTrips] = useState([]);
     const [row1, setRow1] = useState([]);
@@ -99,6 +100,10 @@ const Trips = () => {
         <Container>
             <div className="trips">
                 <div className="trips-col1">
+                    <div className="trips-location-wrapper">
+                        <span className="trips-location" onClick={() => window.location.href = '/album'}>Album</span>
+                        <span> / Trips</span>
+                    </div>
                     <h1>Sắp xếp</h1>
                     <FormControl fullWidth className="trips-filter">
                         <InputLabel variant="standard" htmlFor="uncontrolled-native">Tên tiêu đề</InputLabel>

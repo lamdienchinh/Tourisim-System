@@ -7,12 +7,13 @@ import { getUserData } from '../../state/selectors';
 import { useDispatch } from 'react-redux';
 import { Avatar } from "@mui/material";
 import Container from '@mui/material/Container';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import Sidebar from "../sidebar";
 import "./css/Header.scss";
 import logo from "../../assets/imgs/logo1.png"
 import avatar from "../../assets/imgs/avatar.png";
+import { FaCamera } from 'react-icons/fa';
 
 const Header = () => {
     //Connect Wallet
@@ -27,7 +28,18 @@ const Header = () => {
             // toast.success('Kết nối ví Metamask thành công !');
         }
     };
-
+    const openCamera = async () => {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            // Truy cập camera thành công, có thể thực hiện các thao tác khác tại đây
+            // console.log('Truy cập camera thành công');
+            toast.success('Truy cập camera thành công !');
+        } catch (error) {
+            // Xử lý lỗi truy cập camera
+            toast.error('Truy cập camera thất bại');
+            console.error('Lỗi truy cập camera:', error);
+        }
+    };
     return (
         <header className="header">
             <ToastContainer position="top-right"
@@ -63,6 +75,25 @@ const Header = () => {
                         {walletAddress && walletAddress.length > 0
                             ? <Avatar className="header__avatar" src={image} alt="Avatar" /> : "LOGIN"}
                     </div>
+                    {
+                        walletAddress && walletAddress.length > 0 ?
+                            <div>
+                                <div className="user__camera">
+                                    <button className="camera-button" onClick={openCamera}>
+                                        <FaCamera className="camera-icon" />
+                                        Mở camera
+                                    </button>
+                                </div>
+                            </div>
+                            : ""
+                    }
+                    {
+                        walletAddress && walletAddress.length > 0 ?
+                            <div>
+                                <Sidebar></Sidebar>
+                            </div>
+                            : ""
+                    }
                 </div>
             </Container>
         </header>
