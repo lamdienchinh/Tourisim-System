@@ -7,7 +7,8 @@ const types = [
         img: img,
         rate: 5,
         address: 'ADDRESS1',
-        comment: '120'
+        comment: '120',
+        content: 'Đây là một địa danh ở tỉnh An Giang'
     },
     {
         id: 2,
@@ -16,7 +17,8 @@ const types = [
         img: img,
         rate: 5,
         address: 'ADDRESS2',
-        comment: '120'
+        comment: '120',
+        content: 'Đây là một địa danh ở tỉnh An Giang'
     },
     {
         id: 3,
@@ -25,7 +27,8 @@ const types = [
         img: img,
         rate: 5,
         address: 'ADDRESS3',
-        comment: '120'
+        comment: '120',
+        content: 'Đây là một địa danh ở tỉnh An Giang'
     },
     {
         id: 4,
@@ -34,7 +37,8 @@ const types = [
         img: img,
         rate: 5,
         address: 'ADDRESS4',
-        comment: '120'
+        comment: '120',
+        content: 'Đây là một địa danh ở tỉnh An Giang'
     },
     {
         id: 5,
@@ -43,7 +47,8 @@ const types = [
         img: img,
         rate: 5,
         address: 'ADDRESS5',
-        comment: '120'
+        comment: '120',
+        content: 'Đây là một địa danh ở tỉnh An Giang'
     }
 ];
 const trips =

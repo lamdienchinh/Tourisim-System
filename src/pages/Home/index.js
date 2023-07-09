@@ -2,7 +2,7 @@
 import PlaceThumbnail from "../../components/place_thumbnail";
 import { FaSearch } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
-import { Pagination } from '@mui/material';
+import { Pagination, NativeSelect, InputLabel, FormControl } from '@mui/material';
 import types from "../../constants";
 import Container from '@mui/material/Container';
 // import { getUserData } from '../../state/selectors';
@@ -22,12 +22,10 @@ const Home = () => {
     const [places, setPlaces] = useState([]);
     const [row1, setRow1] = useState([]);
     const [row2, setRow2] = useState([]);
-    const [row3, setRow3] = useState([]);
-    const [row4, setRow4] = useState([]);
+    // const [row3, setRow3] = useState([]);
+    // const [row4, setRow4] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
-    //Lấy place để hiển thị
-
-    //handle chọn trang
+    // const [star, selectStar] = useState();
     const handlePageChange = (event, number) => {
         setSelect(number);
     }
@@ -44,22 +42,22 @@ const Home = () => {
     }, []);
 
     useEffect(() => {
-        const start = 12 * (select - 1);
-        let end = start + 12;
+        const start = 4 * (select - 1);
+        let end = start + 4;
         if (end > places.length) end = places.length;
         const temp = places.slice(start, end);
 
-        const total = Math.ceil(places.length / 12);
+        const total = Math.ceil(places.length / 4);
 
-        const row1 = temp.slice(0, 3);
-        const row2 = temp.slice(3, 6);
-        const row3 = temp.slice(6, 9);
-        const row4 = temp.slice(9, 12);
+        const row1 = temp.slice(0, 2);
+        const row2 = temp.slice(2, 4);
+        // const row3 = temp.slice(4, 6);
+        // const row4 = temp.slice(6, 8);
 
         setRow1(row1);
         setRow2(row2);
-        setRow3(row3);
-        setRow4(row4);
+        // setRow3(row3);
+        // setRow4(row4);
         setTotalPages(total);
     }, [select, places]);
 
@@ -73,18 +71,14 @@ const Home = () => {
                     setPlaces(currents);
                     break;
                 case 2:
-                    currents = allplaces.filter(item => item.type === 'di tich')
-                    setPlaces(currents);
-                    break;
-                case 3:
                     currents = allplaces.filter(item => item.type === 'am thuc')
                     setPlaces(currents);
                     break;
-                case 4:
+                case 3:
                     currents = allplaces.filter(item => item.type === 'giai tri')
                     setPlaces(currents);
                     break;
-                case 5:
+                case 4:
                     currents = allplaces.filter(item => item.type === 'noi o')
                     setPlaces(currents);
                     break;
@@ -116,53 +110,77 @@ const Home = () => {
     return (
         <div className="home">
             <div className="home__slides">
-                <div className="home__slides--searchbar" >
-                    <div className="home__searchbar__title">Bạn muốn đi đâu ?</div>
-                    <input type="search" onChange={(event) => setInputSearch(event.target.value)} placeholder="Search here ..." />
-                    <FaSearch className="search-icon" onClick={() => search(inputsearch)}></FaSearch>
-                </div>
+                Khám phá các địa điểm du lịch
             </div>
             <Container maxWidth="lg">
-                <div className="home__options">
-                    <div className={`home__options--danhlam ${getplaces === 1 ? 'home__options--selected' : ''}`} onClick={() => filter(1)}>
-                        Danh lam
+                <div className="places-wrapper">
+                    <div className="home__options">
+                        <h1>Tìm kiếm địa điểm du lịch</h1>
+                        <div className="home__slides--searchbar" >
+                            <input type="search" onChange={(event) => setInputSearch(event.target.value)} placeholder="Search here ..." />
+                            <FaSearch className="search-icon" onClick={() => search(inputsearch)}></FaSearch>
+                        </div>
+                        <h1>Loại địa điểm du lịch</h1>
+                        <div className="type-wrapper">
+                            <div className={`home-btn home__options--danhlam ${getplaces === 1 ? 'home__options--selected' : ''}`} onClick={() => filter(1)}>
+                                Danh lam
+                            </div>
+                            <div className={`home-btn home__options--amthuc ${getplaces === 3 ? 'home__options--selected' : ''}`} onClick={() => filter(3)}>
+                                Ẩm thực
+                            </div>
+                            <div className={`home-btn home__options--giaitri ${getplaces === 4 ? 'home__options--selected' : ''}`} onClick={() => filter(4)}>
+                                Giải trí
+                            </div>
+                            <div className={`home-btn home__options--noio ${getplaces === 5 ? 'home__options--selected' : ''}`} onClick={() => filter(5)}>
+                                Nơi ở
+                            </div>
+                        </div>
+                        <h1>Sắp xếp</h1>
+                        <FormControl fullWidth className="home-filter">
+                            <InputLabel variant="standard" htmlFor="uncontrolled-native">Số sao</InputLabel>
+                            <NativeSelect
+                                defaultValue={1}
+                            // onChange={handleChange}
+                            >
+                                <option value={1}>Tăng dần</option>
+                                <option value={2}>Giảm dần</option>
+                            </NativeSelect>
+                        </FormControl>
+                        <FormControl fullWidth className="home-filter">
+                            <InputLabel variant="standard" htmlFor="uncontrolled-native">Số Reviews</InputLabel>
+                            <NativeSelect
+                                defaultValue={1}
+                            // onChange={handleChange}
+                            >
+                                <option value={1}>Tăng dần</option>
+                                <option value={2}>Giảm dần</option>
+                            </NativeSelect>
+                        </FormControl>
                     </div>
-                    <div className={`home__options--ditich ${getplaces === 2 ? 'home__options--selected' : ''}`} onClick={() => filter(2)}>
-                        Di tích
-                    </div>
-                    <div className={`home__options--amthuc ${getplaces === 3 ? 'home__options--selected' : ''}`} onClick={() => filter(3)}>
-                        Ẩm thực
-                    </div>
-                    <div className={`home__options--giaitri ${getplaces === 4 ? 'home__options--selected' : ''}`} onClick={() => filter(4)}>
-                        Vui chơi, giải trí
-                    </div>
-                    <div className={`home__options--noio ${getplaces === 5 ? 'home__options--selected' : ''}`} onClick={() => filter(5)}>
-                        Nơi ở
-                    </div>
-                </div>
-                <div className="home__results">
-                    <div className="home__results--pagination">
-                        <Pagination count={totalPages} onChange={handlePageChange} showFirstButton showLastButton />
-                    </div>
-                    <div className="home__results--1">
-                        {row1 && row1.map((item, itemIndex) => (
-                            <PlaceThumbnail place={item}></PlaceThumbnail>
-                        ))}
-                    </div>
-                    <div className="home__results--2">
-                        {row2 && row2.map((item, itemIndex) => (
-                            <PlaceThumbnail place={item}></PlaceThumbnail>
-                        ))}
-                    </div>
-                    <div className="home__results--3">
-                        {row3 && row3.map((item, itemIndex) => (
-                            <PlaceThumbnail place={item}></PlaceThumbnail>
-                        ))}
-                    </div>
-                    <div className="home__results--4">
-                        {row4 && row4.map((item, itemIndex) => (
-                            <PlaceThumbnail place={item}></PlaceThumbnail>
-                        ))}
+                    <div className="home__results">
+                        <div className="home__results--1">
+                            {row1 && row1.map((item, itemIndex) => (
+                                <PlaceThumbnail place={item}></PlaceThumbnail>
+                            ))}
+                        </div>
+                        <div className="home__results--2">
+                            {row2 && row2.map((item, itemIndex) => (
+                                <PlaceThumbnail place={item}></PlaceThumbnail>
+                            ))}
+                        </div>
+                        {/* <div className="home__results--3">
+                            {row3 && row3.map((item, itemIndex) => (
+                                <PlaceThumbnail place={item}></PlaceThumbnail>
+                            ))}
+                        </div>
+                        <div className="home__results--4">
+                            {row4 && row4.map((item, itemIndex) => (
+                                <PlaceThumbnail place={item}></PlaceThumbnail>
+                            ))}
+                        </div> */}
+                        <div className="home__results--pagination">
+                            <Pagination count={totalPages} onChange={handlePageChange} showFirstButton showLastButton />
+                        </div>
                     </div>
                 </div>
             </Container>

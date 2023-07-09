@@ -3,6 +3,9 @@
     padding-top: 60px;
     & .home__slides {
         width: 100%;
+        font-size: 60px;
+        font-family: Lobster, sans-serif;
+        color: white;
         height: 45rem;
         display: flex;
         justify-content: center;
@@ -15,8 +18,10 @@
     // CSS cho searchbar
 
     & .home__slides--searchbar {
+        display: flex;
+        flex-direction: row;
         position: relative;
-        width: 30%;
+        width: 100%;
         height: 50px;
         box-sizing: border-box;
         border-radius: 25px;
@@ -25,7 +30,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
+            width: 85%;
             height: 42.5px;
             line-height: 30px;
             outline: 0;
@@ -33,10 +38,12 @@
             font-size: 1em;
             border-radius: 20px;
             padding: 0 20px;
+            &:focus {
+                border: 2px solid rgb(2, 179, 238);
+            }
         }
         & .search-icon {
-            border: 2px solid #8d0505;
-            background-color: #8d0505;
+            background-color: rgb(2, 179, 238);
             color: white;
             box-sizing: border-box;
             padding: 10px;
@@ -49,22 +56,46 @@
             text-align: center;
             font-size: 1.2em;
             cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+            &:hover {
+                opacity: 0.8;
+                transform: scale(1.1);
+                will-change: transform;
+            }
         }
+    }
+    .search-btn {
+        background-color: rgb(2, 179, 238);
+        width: 100%;
     }
     // CSS cho options
     & .home__options {
-        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        & h1 {
+            color: #000000;
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1.5em;
+            text-align: center;
+        }
+    }
+    & .type-wrapper {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        margin-bottom: 20px;
     }
-    & .home__options div {
+    & .home-btn {
         border: 1px solid rgb(0, 0, 0);
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         margin: 0px 5px 0px 5px;
         padding: 10px;
-        width: 12%;
+        width: 80px;
+        height: 4rem;
         border-radius: 5px;
         text-align: center;
         font-weight: 600;
@@ -74,14 +105,14 @@
         transition-property: box-shadow, transform;
         &:hover {
             cursor: pointer;
-            background-color: rgb(139, 4, 4);
+            background-color: rgb(2, 179, 238);
             color: rgb(255, 255, 255);
             transform: scale(1.05);
         }
     }
     & .home__options--selected {
         cursor: pointer;
-        background-color: rgb(139, 4, 4);
+        background-color: rgb(2, 179, 238);
         color: rgb(255, 255, 255);
         transform: scale(1.05);
     }
@@ -90,7 +121,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%;
         & > div {
             // display: flex;
             // flex-direction: row;
@@ -99,7 +129,7 @@
             display: grid;
             // height: 25rem;
             // margin-bottom: 20px;
-            grid-template-columns: repeat(3, 1fr); /* Tạo 4 cột có kích thước bằng nhau */
+            grid-template-columns: repeat(2, 1fr); /* Tạo 4 cột có kích thước bằng nhau */
             grid-gap: 10px;
             // & > div {
             //     // width: 100%;
@@ -113,12 +143,22 @@
         }
     }
 }
-.home__searchbar__title {
+
+.places-wrapper {
+    padding-top: 20px;
     display: flex;
-    justify-content: center;
-    position: relative;
-    top: -8rem;
-    font-size: 60px;
-    font-family: Lobster, sans-serif;
-    color: white;
+    flex-direction: row;
+}
+
+.home__options {
+    width: 40%;
+    margin-right: 20px;
+    padding: 50px;
+}
+.home__results {
+    width: 60% !important;
+}
+
+.home-filter {
+    padding: 10px !important;
 }

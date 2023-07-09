@@ -5,26 +5,26 @@ import AliceCarousel from 'react-alice-carousel';
 import { useNavigate } from 'react-router-dom';
 import { Rating, NativeSelect, FormControl, InputLabel } from '@mui/material';
 import ReviewChart from "../../components/review_chart";
-import { useState } from "react";
+// import { useState } from "react";
 import Review from "../../components/review";
 import Container from '@mui/material/Container';
 
 const PlaceInfor = () => {
-    const reviews = [
-        { rating: 1, count: 10 },
-        { rating: 2, count: 20 },
-        { rating: 3, count: 30 },
-        { rating: 4, count: 15 },
-        { rating: 5, count: 25 },
-    ];
+    // const reviews = [
+    //     { rating: 1, count: 10 },
+    //     { rating: 2, count: 20 },
+    //     { rating: 3, count: 30 },
+    //     { rating: 4, count: 15 },
+    //     { rating: 5, count: 25 },
+    // ];
     const navigate = useNavigate();
     // Xử lý Slideshow
     const handleDragStart = (e) => e.preventDefault();
 
     const items = [
-        <img src={img} onDragStart={handleDragStart} role="presentation" />,
-        <img src={img} onDragStart={handleDragStart} role="presentation" />,
-        <img src={img} onDragStart={handleDragStart} role="presentation" />,
+        <img src={img} onDragStart={handleDragStart} role="presentation" alt="temp" />,
+        <img src={img} onDragStart={handleDragStart} role="presentation" alt="temp" />,
+        <img src={img} onDragStart={handleDragStart} role="presentation" alt="temp" />,
     ];
 
     const handleClick = () => {
@@ -32,11 +32,11 @@ const PlaceInfor = () => {
     };
 
     //Xử lý filter
-    const [selectedValue, setSelectedValue] = useState('');
-
-    const handleChange = (event) => {
-        setSelectedValue(event.target.value);
-    };
+    // const [selectedValue, setSelectedValue] = useState('');
+    // console.log(selectedValue)
+    // const handleChange = (event) => {
+    //     setSelectedValue(event.target.value);
+    // };
     return (
         <div className="placeinfor">
             <div className="placeinfor__slide">

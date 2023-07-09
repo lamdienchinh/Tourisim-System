@@ -21,6 +21,9 @@ const PlaceThumbnail = (props) => {
                 <div className="placethumbnail__title">
                     {place.title}
                 </div>
+                <div className="placethumbnail__content">
+                    {place.content}
+                </div>
                 <div className="placethumbnail__sth">
                     <div className="placethumbnail__sth--address">
                         <FaMapMarkerAlt></FaMapMarkerAlt>

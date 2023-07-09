@@ -56,7 +56,7 @@ const Header = () => {
                     </div>
                     <div className="header__ele header__ele--home">
                         <NavLink className={({ isActive, isPending }) => isPending ? "header__link" : isActive ? "header__link--selected" : "header__link"} to='/home'>
-                            VISIT
+                            TRAVEL
                         </NavLink>
                     </div>
                     <div className={walletAddress && walletAddress.length > 0 ? "header__ele header__ele--connected" : "header__ele header__ele--login"} onClick={login}>
