@@ -14,7 +14,7 @@ import { Uploader } from "uploader";
 import { UploadButton } from "react-uploader";
 import Skeleton from '@mui/material/Skeleton';
 import config from "../../constants"
-
+import Rating from '@mui/material/Rating';
 function PaperComponent(props) {
     return (
         <Draggable
@@ -49,7 +49,11 @@ const Trips = () => {
     const handlePageChange = (event, number) => {
         setSelect(number);
     }
+    const [rating, setRating] = React.useState(0);
 
+    const handleRatingChange = (event, value) => {
+        setRating(value);
+    };
     useEffect(() => {
         var style = {
             position: 'absolute',
@@ -199,6 +203,10 @@ const Trips = () => {
                                     noValidate
                                     autoComplete="off"
                                 >
+                                    <h2>Đánh giá</h2>
+                                    <Rating name="rating"
+                                        value={rating}
+                                        onChange={handleRatingChange}></Rating>
                                     <div className="tripinfor-form">
                                         <TextField
                                             required
