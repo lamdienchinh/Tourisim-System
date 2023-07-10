@@ -31,7 +31,7 @@ const Trip = (props) => {
                     <Rating value={trip.rating} readOnly />
                 </CardContent>
             </Card>
-        </div>
+        </div >
     );
 }
 

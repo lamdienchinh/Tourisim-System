@@ -2,7 +2,7 @@
 import PlaceThumbnail from "../../components/place_thumbnail";
 import { FaSearch } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
-import { Pagination, NativeSelect, InputLabel, FormControl } from '@mui/material';
+import { Pagination, NativeSelect, InputLabel, FormControl, TextField } from '@mui/material';
 import types from "../../constants";
 import Container from '@mui/material/Container';
 import Skeleton from '@mui/material/Skeleton';
@@ -126,7 +126,13 @@ const Home = () => {
                     <div className="home__options">
                         <h1>Tìm kiếm địa điểm du lịch</h1>
                         <div className="home__slides--searchbar" >
-                            <input type="search" onChange={(event) => setInputSearch(event.target.value)} placeholder="Search here ..." />
+                            <TextField
+                                label="Tìm kiếm"
+                                id="standard-size-normal"
+                                variant="standard"
+                                onChange={(event) => setInputSearch(event.target.value)}
+                                placeholder="Tìm kiếm ở đây"
+                            />
                             <FaSearch className="search-icon" onClick={() => search(inputsearch)}></FaSearch>
                         </div>
                         <h1>Loại địa điểm du lịch</h1>

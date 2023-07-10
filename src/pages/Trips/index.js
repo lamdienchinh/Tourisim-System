@@ -105,7 +105,7 @@ const Trips = () => {
     return (
         <div className="trip-wrapper">
             <div className="trip-slide">Khám phá những chuyến đi của bạn</div>
-            <Container>
+            <Container maxWidth="lg">
                 <div className="trips">
                     <div className="trips-col1">
                         <div className="trips-location-wrapper">

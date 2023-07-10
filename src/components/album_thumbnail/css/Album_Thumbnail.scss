@@ -1,10 +1,10 @@
 .albumthumbnail {
     background-color: rgb(253, 252, 252);
-    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
     padding: 0px 0px 20px 0px;
     margin: 10px 20px 10px 20px;
     width: 100%;
-    border-radius: 40px;
+    border-radius: 20px;
     & > .albumthumbnail__img {
         padding: 0px 0px 10px 0px;
         max-width: 100%;
@@ -12,7 +12,7 @@
     }
     & > .albumthumbnail__img > img {
         max-width: 100%;
-        border-radius: 40px 40px 0 0;
+        border-radius: 20px 20px 0 0;
     }
     & .albumthumbnail__rate {
         display: flex;
@@ -37,7 +37,7 @@
     }
     &:hover {
         cursor: pointer;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         scale: 1.005;
         & .albumthumbnail__img > img {
             opacity: 0.9;

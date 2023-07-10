@@ -180,7 +180,7 @@ const CreateAlbum = () => {
 
     const handleCreateAlbum = async (event) => {
         event.preventDefault();
-        console.log(selectedTrips)
+        console.log(selectedTrips) 
         console.log(albumData)
         toast.success('Tạo album mới thành công !')
     };
