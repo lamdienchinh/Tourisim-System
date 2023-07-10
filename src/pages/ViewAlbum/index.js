@@ -34,12 +34,13 @@ const ViewAlbum = () => {
 
     return (
         <div className="viewalbum">
+            <div className="viewalbum-slide">Album lưu giữ kỷ niệm</div>
             <Container maxWidth="lg">
                 <div className="viewalbum__header">
                     <div>
-                        <span className="viewalbum__location" onClick={handleGoBack}>Album / </span>
+                        <span className="viewalbum__location" onClick={handleGoBack}>Album </span>
                         <span>
-                            Details
+                            / Details
                         </span>
                     </div>
                 </div>

@@ -31,6 +31,7 @@ const Header = () => {
     const openCamera = async () => {
         try {
             const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            console.log(stream)
             // Truy cập camera thành công, có thể thực hiện các thao tác khác tại đây
             // console.log('Truy cập camera thành công');
             toast.success('Truy cập camera thành công !');

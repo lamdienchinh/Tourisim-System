@@ -186,6 +186,7 @@ const CreateAlbum = () => {
     };
     return (
         <div className="createalbum">
+            <div className="createalbum-slide">Tạo Album của riêng bạn</div>
             <Container maxWidth="lg">
                 <div className="createalbum__left">
                     <div className="createalbum__header">

@@ -6,7 +6,6 @@ import React, { useState, useRef } from "react";
 import Container from "@mui/material/Container";
 import { TextField, Button, Avatar, Input } from '@mui/material';
 import axios from "axios";
-import { FaCamera } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -25,7 +24,7 @@ const User = () => {
     const [lastname, setLastname] = useState(user?.lastname);
     const [email, setEmail] = useState(user?.email);
     const [phonenumber, setPhonenumber] = useState(user?.phone);
-    const [avatar, setAvatar] = useState(user?.avatar);
+    // const [avatar, setAvatar] = useState(user?.avatar);
     const [avatarchange, setAvatarchange] = useState(user?.avatar);
 
     // const navigate = useNavigate();
@@ -87,21 +86,21 @@ const User = () => {
     const handleFileChange = async (event) => {
         event.preventDefault();
         const file = event.target.files[0];
-        setAvatar(file);
+        // setAvatar(file);
         setAvatarchange(URL.createObjectURL(file))
     };
-    const openCamera = async () => {
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-            // Truy cập camera thành công, có thể thực hiện các thao tác khác tại đây
-            // console.log('Truy cập camera thành công');
-            toast.success('Truy cập camera thành công !');
-        } catch (error) {
-            // Xử lý lỗi truy cập camera
-            toast.error('Truy cập camera thất bại');
-            console.error('Lỗi truy cập camera:', error);
-        }
-    };
+    // const openCamera = async () => {
+    //     try {
+    //         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    //         // Truy cập camera thành công, có thể thực hiện các thao tác khác tại đây
+    //         // console.log('Truy cập camera thành công');
+    //         toast.success('Truy cập camera thành công !');
+    //     } catch (error) {
+    //         // Xử lý lỗi truy cập camera
+    //         toast.error('Truy cập camera thất bại');
+    //         console.error('Lỗi truy cập camera:', error);
+    //     }
+    // };
 
     // const handleCameraSuccess = (stream) => {
     //     const video = document.createElement('video');

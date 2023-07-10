@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Pagination, NativeSelect, InputLabel, FormControl } from '@mui/material';
 import types from "../../constants";
 import Container from '@mui/material/Container';
+import Skeleton from '@mui/material/Skeleton';
 // import { getUserData } from '../../state/selectors';
 // import { useSelector } from 'react-redux';
 //import scss
@@ -22,6 +23,7 @@ const Home = () => {
     const [places, setPlaces] = useState([]);
     const [row1, setRow1] = useState([]);
     const [row2, setRow2] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     // const [row3, setRow3] = useState([]);
     // const [row4, setRow4] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
@@ -39,28 +41,35 @@ const Home = () => {
         }));
         setAllPlaces(array);
         setPlaces(array);
+        setIsLoading(false);
     }, []);
 
     useEffect(() => {
-        const start = 4 * (select - 1);
-        let end = start + 4;
-        if (end > places.length) end = places.length;
-        const temp = places.slice(start, end);
+        const fetchData = async () => {
+            const start = 4 * (select - 1);
+            let end = start + 4;
+            if (end > places.length) end = places.length;
+            const temp = places.slice(start, end);
 
-        const total = Math.ceil(places.length / 4);
+            const total = Math.ceil(places.length / 4);
 
-        const row1 = temp.slice(0, 2);
-        const row2 = temp.slice(2, 4);
-        // const row3 = temp.slice(4, 6);
-        // const row4 = temp.slice(6, 8);
+            const row1 = temp.slice(0, 2);
+            const row2 = temp.slice(2, 4);
+            // const row3 = temp.slice(4, 6);
+            // const row4 = temp.slice(6, 8);
 
-        setRow1(row1);
-        setRow2(row2);
-        // setRow3(row3);
-        // setRow4(row4);
-        setTotalPages(total);
+            setRow1(row1);
+            setRow2(row2);
+            // setRow3(row3);
+            // setRow4(row4);
+            setTotalPages(total);
+        };
+        fetchData();
     }, [select, places]);
 
+    useEffect(() => {
+        console.log("isLoading", isLoading);
+    }, [isLoading]);
     const filter = (value) => {
         let currents = allplaces;
         if (getplaces !== value) {
@@ -158,16 +167,22 @@ const Home = () => {
                         </FormControl>
                     </div>
                     <div className="home__results">
-                        <div className="home__results--1">
+                        {isLoading === true ? <div>
+                            <div><Skeleton height="32rem" /></div>
+                            <div><Skeleton height="32rem" /></div>
+                        </div> : <div className="home__results--1">
                             {row1 && row1.map((item, itemIndex) => (
                                 <PlaceThumbnail place={item}></PlaceThumbnail>
                             ))}
-                        </div>
-                        <div className="home__results--2">
+                        </div>}
+                        {isLoading === true ? <div>
+                            <div><Skeleton height="32rem" /></div>
+                            <div><Skeleton height="32rem" /></div>
+                        </div> : <div className="home__results--2">
                             {row2 && row2.map((item, itemIndex) => (
                                 <PlaceThumbnail place={item}></PlaceThumbnail>
                             ))}
-                        </div>
+                        </div>}
                         {/* <div className="home__results--3">
                             {row3 && row3.map((item, itemIndex) => (
                                 <PlaceThumbnail place={item}></PlaceThumbnail>

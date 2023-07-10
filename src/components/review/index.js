@@ -43,7 +43,7 @@ const Review = () => {
                                 <Paper>
                                     <img
                                         src={image}
-                                        alt={`Image ${index}`}
+                                        alt={`Ảnh ${index}`}
                                         style={{ width: '100%' }}
                                     />
                                 </Paper>

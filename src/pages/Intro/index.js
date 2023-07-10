@@ -37,19 +37,19 @@ const Intro = () => {
             <section className="intro-first">
                 <div className="bg-img">
                     <div className="intro-content">
-                        <div className="intro-plane"><img src={plane}></img></div>
+                        <div className="intro-plane"><img src={plane} alt="Máy bay"></img></div>
                         <h1 className="intro-name">TOURDC</h1>
                         <h6>Ứng dụng du lịch áp dụng công nghệ Blockchain</h6>
                         <button className="intro-tohome" onClick={() => window.location.replace('/home')}>Khám phá ngay</button>
                     </div>
                     <div className="intro-img1">
-                        <img src={place1}></img>
+                        <img src={place1} alt="Ảnh"></img>
                     </div>
                     <div className="intro-img2">
-                        <img src={place2}></img>
+                        <img src={place2} alt="Ảnh"></img>
                     </div>
                 </div>
-            </section>
+            </section >
             <section className="intro-two">
                 <div className="intro-two-overlay">
                     <div className="intro-two__title">

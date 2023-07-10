@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 import Fireflies from "../../components/fireflies";
 import "./css/General_layout.scss";
 
-const General_Layout = () => {
+const GeneralLayout = () => {
 
 
 
@@ -50,4 +50,4 @@ const General_Layout = () => {
     );
 };
 
-export default General_Layout;
+export default GeneralLayout;

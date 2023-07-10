@@ -12,6 +12,7 @@ import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Paper, Di
 import Draggable from 'react-draggable';
 import { Uploader } from "uploader";
 import { UploadButton } from "react-uploader";
+import Skeleton from '@mui/material/Skeleton';
 import config from "../../constants"
 
 function PaperComponent(props) {
@@ -43,7 +44,7 @@ const Trips = () => {
     const [value, setValue] = useState(dayjs('2022-04-17T15:30'));
     const [scroll, setScroll] = useState('paper');
     //Lấy place để hiển thị
-
+    const [isLoading, setIsLoading] = useState(true)
     //handle chọn trang
     const handlePageChange = (event, number) => {
         setSelect(number);
@@ -67,6 +68,7 @@ const Trips = () => {
         setStyle(style);
         // console.log(trips);
         // setTrips();
+        setIsLoading(false)
     }, []);
 
     useEffect(() => {
@@ -97,59 +99,67 @@ const Trips = () => {
     }
     const handleClose = () => setOpen(false);
     return (
-        <Container>
-            <div className="trips">
-                <div className="trips-col1">
-                    <div className="trips-location-wrapper">
-                        <span className="trips-location" onClick={() => window.location.href = '/album'}>Album</span>
-                        <span> / Trips</span>
+        <div className="trip-wrapper">
+            <div className="trip-slide">Khám phá những chuyến đi của bạn</div>
+            <Container>
+                <div className="trips">
+                    <div className="trips-col1">
+                        <div className="trips-location-wrapper">
+                            <span className="trips-location" onClick={() => window.location.href = '/album'}>Album</span>
+                            <span> / Trips</span>
+                        </div>
+                        <h1>Sắp xếp</h1>
+                        <FormControl fullWidth className="trips-filter">
+                            <InputLabel variant="standard" htmlFor="uncontrolled-native">Tên tiêu đề</InputLabel>
+                            <NativeSelect
+                                defaultValue={1}
+                            // onChange={handleChange}
+                            >
+                                <option value={1}>A-Z ASC</option>
+                                <option value={2}>Z-A DASC</option>
+                            </NativeSelect>
+                        </FormControl>
+                        <FormControl fullWidth className="trips-filter">
+                            <InputLabel variant="standard" htmlFor="uncontrolled-native">Ngày tạo</InputLabel>
+                            <NativeSelect
+                                defaultValue={1}
+                            // onChange={handleChange}
+                            >
+                                <option value={1}>Mới nhất</option>
+                                <option value={2}>Cũ nhất</option>
+                            </NativeSelect>
+                        </FormControl>
+                        <h1>Chọn ngày Checkin</h1>
+                        <div>
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <DemoContainer components={['DateTimePicker']}>
+                                    <DateTimePicker
+                                        label="Chọn ngày"
+                                        value={value}
+                                        onChange={(newValue) => setValue(newValue)}
+                                    />
+                                </DemoContainer>
+                            </LocalizationProvider>
+                        </div>
                     </div>
-                    <h1>Sắp xếp</h1>
-                    <FormControl fullWidth className="trips-filter">
-                        <InputLabel variant="standard" htmlFor="uncontrolled-native">Tên tiêu đề</InputLabel>
-                        <NativeSelect
-                            defaultValue={1}
-                        // onChange={handleChange}
-                        >
-                            <option value={1}>A-Z ASC</option>
-                            <option value={2}>Z-A DASC</option>
-                        </NativeSelect>
-                    </FormControl>
-                    <FormControl fullWidth className="trips-filter">
-                        <InputLabel variant="standard" htmlFor="uncontrolled-native">Ngày tạo</InputLabel>
-                        <NativeSelect
-                            defaultValue={1}
-                        // onChange={handleChange}
-                        >
-                            <option value={1}>Mới nhất</option>
-                            <option value={2}>Cũ nhất</option>
-                        </NativeSelect>
-                    </FormControl>
-                    <h1>Chọn ngày Checkin</h1>
-                    <div>
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DemoContainer components={['DateTimePicker']}>
-                                <DateTimePicker
-                                    label="Chọn ngày"
-                                    value={value}
-                                    onChange={(newValue) => setValue(newValue)}
-                                />
-                            </DemoContainer>
-                        </LocalizationProvider>
-                    </div>
-                </div>
-                <div className="trips-col2">
-                    <div className="trips__results--1">
-                        {row1 && row1.map((item, itemIndex) => (
-                            <div onClick={() => handleOpen(item)}> <Trip trip={item}></Trip></div>
-                        ))}
-                    </div>
-                    <div className="trips__results--2">
-                        {row2 && row2.map((item, itemIndex) => (
-                            <div onClick={() => handleOpen(item)}> <Trip trip={item}></Trip></div>
-                        ))}
-                    </div>
-                    {/* <div className="trips__results--3">
+                    <div className="trips-col2">
+                        {isLoading === true ? <div>
+                            <div><Skeleton height="100%" /></div>
+                            <div><Skeleton height="100%" /></div>
+                        </div> : <div className="trips__results--1">
+                            {row1 && row1.map((item, itemIndex) => (
+                                <div onClick={() => handleOpen(item)}> <Trip trip={item}></Trip></div>
+                            ))}
+                        </div>}
+                        {isLoading === true ? <div>
+                            <div><Skeleton height="100%" /></div>
+                            <div><Skeleton height="100%" /></div>
+                        </div> : <div className="trips__results--2">
+                            {row2 && row2.map((item, itemIndex) => (
+                                <div onClick={() => handleOpen(item)}> <Trip trip={item}></Trip></div>
+                            ))}
+                        </div>}
+                        {/* <div className="trips__results--3">
                     {row3 && row3.map((item, itemIndex) => (
                         <div onClick={() => handleOpen(item)}> <Trip trip={item}></Trip></div>
                     ))}
@@ -159,97 +169,97 @@ const Trips = () => {
                         <div onClick={() => handleOpen(item)}> <Trip trip={item}></Trip></div>
                     ))}
                 </div> */}
-                    <div className="trips__results--pagination">
-                        <Pagination count={totalPages} onChange={handlePageChange} showFirstButton showLastButton />
+                        <div className="trips__results--pagination">
+                            <Pagination count={totalPages} onChange={handlePageChange} showFirstButton showLastButton />
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div>
-                <Dialog
-                    fullScreen
-                    open={open}
-                    onClose={handleClose}
-                    PaperComponent={PaperComponent}
-                    aria-labelledby="draggable-dialog-title"
-                    scroll='paper'
-                >
-                    <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
-                        NÊU CẢM NGHĨ VỀ CHUYẾN ĐI
-                    </DialogTitle>
-                    <DialogContent>
-                        <DialogContentText>
-                            Thời gian: {selectTrip?.time}
-                        </DialogContentText>
-                        <div className="trip-form">
-                            <Box
-                                component="form"
-                                sx={{
-                                    '& .MuiTextField-root': { m: 1, width: '100%' },
-                                }}
-                                noValidate
-                                autoComplete="off"
-                            >
-                                <div className="tripinfor-form">
-                                    <TextField
-                                        required
-                                        id="standard-required"
-                                        label="Tiêu đề"
-                                        placeholder='Nhập tiêu đề'
-                                        variant="standard"
-                                        fullWidth
-                                    />
-                                    <TextField
-                                        required
-                                        id="standard-required"
-                                        label="Cảm nghĩ"
-                                        placeholder='Nhập cảm nghĩ'
-                                        variant="standard"
-                                        multiline
-                                        rows={4}
-                                        fullWidth
-                                    />
-                                </div>
-                            </Box>
-                            <UploadButton uploader={uploader}         // Required.
-                                options={options}           // Optional.
-                                onComplete={files => {      // Optional.
-                                    if (files.length === 0) {
-                                        console.log('No files selected.')
-                                    } else {
-                                        console.log('Files uploaded:');
-                                        console.log(files.map(f => f.fileUrl));
-                                    }
-                                }}>
-                                {({ onClick }) =>
-                                    <Button onClick={onClick} variant="contained" >
-                                        Upload ảnh
-                                    </Button>
-                                }
-                            </UploadButton>
-                            <ImageList sx={{ width: 600, height: 350 }} cols={3} rowHeight={164}>
-                                {selectTrip?.images.map((item) => (
-                                    <ImageListItem key={item.url}>
-                                        <img
-                                            src={`${item.url}?w=161&fit=crop&auto=format`}
-                                            srcSet={`${item.url}?w=161&fit=crop&auto=format&dpr=2 2x`}
-                                            alt={`Đây là ảnh thứ ${item.id}`}
-                                            loading="lazy"
+                <div>
+                    <Dialog
+                        fullScreen
+                        open={open}
+                        onClose={handleClose}
+                        PaperComponent={PaperComponent}
+                        aria-labelledby="draggable-dialog-title"
+                        scroll='paper'
+                    >
+                        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+                            NÊU CẢM NGHĨ VỀ CHUYẾN ĐI
+                        </DialogTitle>
+                        <DialogContent>
+                            <DialogContentText>
+                                Thời gian: {selectTrip?.time}
+                            </DialogContentText>
+                            <div className="trip-form">
+                                <Box
+                                    component="form"
+                                    sx={{
+                                        '& .MuiTextField-root': { m: 1, width: '100%' },
+                                    }}
+                                    noValidate
+                                    autoComplete="off"
+                                >
+                                    <div className="tripinfor-form">
+                                        <TextField
+                                            required
+                                            id="standard-required"
+                                            label="Tiêu đề"
+                                            placeholder='Nhập tiêu đề'
+                                            variant="standard"
+                                            fullWidth
                                         />
-                                    </ImageListItem>
-                                ))}
-                            </ImageList>
-                        </div>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button autoFocus onClick={(event) => handleClose(event, 0)}>
-                            Huỷ
-                        </Button>
-                        <Button onClick={(event) => handleClose(event, 1)}>Lưu</Button>
-                    </DialogActions>
-                </Dialog>
-            </div>
-        </Container>
-
+                                        <TextField
+                                            required
+                                            id="standard-required"
+                                            label="Cảm nghĩ"
+                                            placeholder='Nhập cảm nghĩ'
+                                            variant="standard"
+                                            multiline
+                                            rows={4}
+                                            fullWidth
+                                        />
+                                    </div>
+                                </Box>
+                                <UploadButton uploader={uploader}         // Required.
+                                    options={options}           // Optional.
+                                    onComplete={files => {      // Optional.
+                                        if (files.length === 0) {
+                                            console.log('No files selected.')
+                                        } else {
+                                            console.log('Files uploaded:');
+                                            console.log(files.map(f => f.fileUrl));
+                                        }
+                                    }}>
+                                    {({ onClick }) =>
+                                        <Button onClick={onClick} variant="contained" >
+                                            Upload ảnh
+                                        </Button>
+                                    }
+                                </UploadButton>
+                                <ImageList sx={{ width: 600, height: 350 }} cols={3} rowHeight={164}>
+                                    {selectTrip?.images.map((item) => (
+                                        <ImageListItem key={item.url}>
+                                            <img
+                                                src={`${item.url}?w=161&fit=crop&auto=format`}
+                                                srcSet={`${item.url}?w=161&fit=crop&auto=format&dpr=2 2x`}
+                                                alt={`Đây là ảnh thứ ${item.id}`}
+                                                loading="lazy"
+                                            />
+                                        </ImageListItem>
+                                    ))}
+                                </ImageList>
+                            </div>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button autoFocus onClick={(event) => handleClose(event, 0)}>
+                                Huỷ
+                            </Button>
+                            <Button onClick={(event) => handleClose(event, 1)}>Lưu</Button>
+                        </DialogActions>
+                    </Dialog>
+                </div>
+            </Container>
+        </div>
     );
 };
 

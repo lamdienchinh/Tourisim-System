@@ -7,8 +7,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { logout } from "../../state/userSlice";
-import { useSelector } from 'react-redux';
-import { getUserData } from "../../state/selectors";
+// import { useSelector } from 'react-redux';
+// import { getUserData } from "../../state/selectors";
 import Draggable from 'react-draggable';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Paper } from '@mui/material'
 
@@ -28,7 +28,7 @@ function PaperComponent(props) {
 
 
 const Sidebar = () => {
-    let walletAddress = useSelector(getUserData);
+    // let walletAddress = useSelector(getUserData);
 
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();

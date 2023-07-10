@@ -6,7 +6,7 @@ const Code = () => {
         setInput(content);
     }
     const submitCode = () => {
-
+        console.log(input)
     }
     return (
         <section className="code-page">

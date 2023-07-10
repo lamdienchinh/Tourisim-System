@@ -10,6 +10,7 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import Skeleton from '@mui/material/Skeleton';
 
 const Album = () => {
     const [albums, setAlbums] = useState([]);
@@ -22,6 +23,7 @@ const Album = () => {
     const [totalPages, setTotalPages] = useState(0);
     const navigate = useNavigate();
     const [value, setValue] = useState(dayjs('2022-04-17T15:30'));
+    const [isLoading, setIsLoading] = useState(true);
 
     const handleAddAlbum = () => {
         navigate("/createalbum");
@@ -49,6 +51,7 @@ const Album = () => {
         }
         let array = Array.from({ length: 32 }, () => ({ ...temp }));
         setAlbums(array);
+        setIsLoading(false)
     }, []);
 
     useEffect(() => {
@@ -69,9 +72,14 @@ const Album = () => {
         // setRow4(row4);
         setTotalPages(totalPages);
     }, [albums, select]);
-
+    useEffect(() => {
+        console.log(isLoading)
+    }, [isLoading])
     return (
         <div className="album">
+            <div className="album-slide">
+                Tạo Album, Chia sẻ khoảnh khắc
+            </div>
             <Container maxWidth="lg">
                 <div className="album-location">Album</div>
                 <div className="album-wrapper">
@@ -121,16 +129,26 @@ const Album = () => {
                     </div>
                     <div className="album__col col2">
                         <div className="album__results">
-                            <div className="album__results--1">
-                                {row1.map((item, itemIndex) => (
-                                    <AlbumThumbnail key={itemIndex} place={item} />
-                                ))}
-                            </div>
-                            <div className="album__results--2">
-                                {row2.map((item, itemIndex) => (
-                                    <AlbumThumbnail key={itemIndex} place={item} />
-                                ))}
-                            </div>
+                            {
+                                isLoading === true ? <div>
+                                    <div><Skeleton height="100%" /></div>
+                                    <div><Skeleton height="100%" /></div>
+                                </div> : <div className="album__results--1">
+                                    {row1 && row1.map((item, itemIndex) => (
+                                        <AlbumThumbnail key={itemIndex} place={item} />
+                                    ))}
+                                </div>
+                            }
+                            {
+                                isLoading === true ? <div>
+                                    <div><Skeleton height="100%" /></div>
+                                    <div><Skeleton height="100%" /></div>
+                                </div> : <div className="album__results--2">
+                                    {row2 && row2.map((item, itemIndex) => (
+                                        <AlbumThumbnail key={itemIndex} place={item} />
+                                    ))}
+                                </div>
+                            }
                             {/* <div className="album__results--3">
                             {row3.map((item, itemIndex) => (
                                 <AlbumThumbnail key={itemIndex} place={item} />
