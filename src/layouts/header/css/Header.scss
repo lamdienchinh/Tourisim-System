@@ -96,23 +96,27 @@
     justify-content: center;
     padding: 10px;
     background-color: #ffffff;
-    border: 1px solid #999999;
-    border-radius: 5px;
-    font-size: 16px;
+    border: none;
+    font-size: 18px;
     color: #333333;
     cursor: pointer;
+    font-family: Poppins, sans-serif;
 }
 
 .camera-icon {
     margin-right: 5px;
 }
 
-.camera-button:hover {
-    background-color: #ffffff;
-    color: #57b5fa;
-    box-shadow: 0 1px 1px rgba(64, 64, 64, 0.3);
+.menu-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
 }
+// .camera-button:hover {
+//     background-color: #ffffff;
+//     color: #57b5fa;
+// }
 
-.camera-button:hover .camera-icon {
-    color: #57b5fa;
-}
+// .camera-button:hover .camera-icon {
+//     color: #57b5fa;
+// }
