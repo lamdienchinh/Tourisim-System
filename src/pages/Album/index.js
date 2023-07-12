@@ -10,6 +10,9 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Typography from "@mui/material/Typography";
+import Link from '@mui/material/Link';
 import Skeleton from '@mui/material/Skeleton';
 
 const Album = () => {
@@ -79,9 +82,14 @@ const Album = () => {
         <div className="album">
             <div className="album-slide">
                 Tạo Album, Chia sẻ khoảnh khắc
+                <Breadcrumbs aria-label="breadcrumb">
+                    <Link underline="hover" color="inherit" href="/">
+                        Home
+                    </Link>
+                    <Typography color="text.primary">Album</Typography>
+                </Breadcrumbs>
             </div>
             <Container maxWidth="lg">
-                <div className="album-location">Album</div>
                 <div className="album-wrapper">
                     <div className="album__col col1">
                         <h1>Thêm Album & Xem các chuyến đi</h1>

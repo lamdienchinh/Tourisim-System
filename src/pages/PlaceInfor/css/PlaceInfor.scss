@@ -8,6 +8,7 @@
         background-size: contain;
         & > img {
             width: 100%;
+            object-fit: cover;
             height: 28rem;
         }
     }
@@ -94,7 +95,7 @@
         justify-content: center;
         padding-left: 0px;
         & img {
-            max-height: 400px;
+            height: 400px;
         }
     }
     & .placeinfor__rate {

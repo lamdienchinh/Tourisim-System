@@ -18,7 +18,7 @@ const RouterList = () => {
     <Routes>
       <Route element={<GeneralLayout />}>
         <Route path="/" element={<Intro />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/travel" element={<Home />} />
         <Route path="/404" element={<></>} />
         <Route path="/placeinfor" element={<PlaceInfor />} />
       </Route>

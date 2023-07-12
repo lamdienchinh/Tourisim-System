@@ -6,6 +6,9 @@ import { Pagination, NativeSelect, InputLabel, FormControl, TextField } from '@m
 import types from "../../constants";
 import Container from '@mui/material/Container';
 import Skeleton from '@mui/material/Skeleton';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
+import Typography from "@mui/material/Typography";
 // import { getUserData } from '../../state/selectors';
 // import { useSelector } from 'react-redux';
 //import scss
@@ -119,7 +122,17 @@ const Home = () => {
     return (
         <div className="home">
             <div className="home__slides">
-                Khám phá các địa điểm du lịch
+                <div className="home__slides__content">
+                    Khám phá các địa điểm du lịch
+                </div>
+                <div className="home__slides_breadcumb">
+                    <Breadcrumbs aria-label="breadcrumb">
+                        <Link underline="hover" color="inherit" href="/">
+                            Home
+                        </Link>
+                        <Typography color="text.primary">Travel</Typography>
+                    </Breadcrumbs>
+                </div>
             </div>
             <Container maxWidth="lg">
                 <div className="places-wrapper">

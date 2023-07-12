@@ -4,6 +4,8 @@ import Container from '@mui/material/Container';
 import { TextField, Paper, Rating, Typography, ImageList, ImageListItem } from "@mui/material";
 import img from "../../assets/imgs/place1.png"
 import './css/ViewAlbum.scss';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
 
 const ViewAlbum = () => {
     const [selectedLocation, setSelectedLocation] = useState(null);
@@ -34,16 +36,19 @@ const ViewAlbum = () => {
 
     return (
         <div className="viewalbum">
-            <div className="viewalbum-slide">Album lưu giữ kỷ niệm</div>
+            <div className="viewalbum-slide">
+                Album lưu giữ kỷ niệm
+                <Breadcrumbs aria-label="breadcrumb">
+                    <Link underline="hover" color="inherit" href="/">
+                        Home
+                    </Link>
+                    <Link underline="hover" color="inherit" href="/album">
+                        Album
+                    </Link>
+                    <Typography color="text.primary">View Album</Typography>
+                </Breadcrumbs>
+            </div>
             <Container maxWidth="lg">
-                <div className="viewalbum__header">
-                    <div>
-                        <span className="viewalbum__location" onClick={handleGoBack}>Album </span>
-                        <span>
-                            / Details
-                        </span>
-                    </div>
-                </div>
                 <div className="viewalbum__body">
                     <div className="viewalbum__sidebar">
                         <h2 className="viewalbum__title">Danh sách địa điểm</h2>

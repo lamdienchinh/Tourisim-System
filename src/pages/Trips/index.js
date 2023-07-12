@@ -15,6 +15,10 @@ import { UploadButton } from "react-uploader";
 import Skeleton from '@mui/material/Skeleton';
 import config from "../../constants"
 import Rating from '@mui/material/Rating';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Typography from "@mui/material/Typography";
+import Link from '@mui/material/Link';
+
 function PaperComponent(props) {
     return (
         <Draggable
@@ -104,14 +108,21 @@ const Trips = () => {
     const handleClose = () => setOpen(false);
     return (
         <div className="trip-wrapper">
-            <div className="trip-slide">Khám phá những chuyến đi của bạn</div>
+            <div className="trip-slide">
+                Khám phá những chuyến đi của bạn
+                <Breadcrumbs aria-label="breadcrumb">
+                    <Link underline="hover" color="inherit" href="/">
+                        Home
+                    </Link>
+                    <Link underline="hover" color="inherit" href="/album">
+                        Album
+                    </Link>
+                    <Typography color="text.primary">Trips</Typography>
+                </Breadcrumbs>
+            </div>
             <Container maxWidth="lg">
                 <div className="trips">
                     <div className="trips-col1">
-                        <div className="trips-location-wrapper">
-                            <span className="trips-location" onClick={() => window.location.href = '/album'}>Album</span>
-                            <span> / Trips</span>
-                        </div>
                         <h1>Sắp xếp</h1>
                         <FormControl fullWidth className="trips-filter">
                             <InputLabel variant="standard" htmlFor="uncontrolled-native">Tên tiêu đề</InputLabel>
@@ -180,7 +191,8 @@ const Trips = () => {
                 </div>
                 <div>
                     <Dialog
-                        fullScreen
+                        fullWidth={true}
+                        maxWidth="xl"
                         open={open}
                         onClose={handleClose}
                         PaperComponent={PaperComponent}

@@ -128,7 +128,6 @@ const User = () => {
     return (
         <section className='user-page'>
             <Container maxWidth="lg">
-                <div className="user-location">Dashboard</div>
                 <div className='user'>
                     <div className="user__title" onClick={fetchdata}>
                         <h1>THÔNG TIN NGƯỜI DÙNG</h1>
