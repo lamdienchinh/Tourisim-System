@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Rating, Typography, ImageList, ImageListItem, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Paper } from "@mui/material";
+import { NativeSelect, InputLabel, FormControl, TextField } from '@mui/material';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { toast } from 'react-toastify';
+import { FaSearch } from 'react-icons/fa';
 import 'react-toastify/dist/ReactToastify.css';
 import "./css/CreateAlbum.scss"
 import Container from '@mui/material/Container';
@@ -90,78 +92,119 @@ const CreateAlbum = () => {
                 </Breadcrumbs>
             </div>
             <Container maxWidth="lg">
-                <div className="createalbum__left">
-                    <h2>Create Album</h2>
-                    <div className="trips-list">
-                        {trips && trips.map((currentTrip) => (
-                            <div className="trip-box">
-                                {
-                                    <Accordion>
-                                        <AccordionSummary
-                                            expandIcon={<ExpandMoreIcon />}
-                                            aria-controls="panel1a-content"
-                                            id="panel1a-header"
-                                        >
-                                            <Typography sx={{ width: '33%', flexShrink: 0 }}> {currentTrip.title}</Typography>
-                                            <Typography sx={{ color: 'text.secondary' }}>Thời gian: {currentTrip.time}, Địa điểm: </Typography>
-                                        </AccordionSummary>
-                                        <AccordionDetails>
-                                            <div className="trip__infor">
-                                                <div className='rating__row'>
-                                                    Rating:
-                                                    <Rating
-                                                        name="rating"
-                                                        value={currentTrip.rating}
-                                                        readOnly
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <Typography variant="h5" component="h6">
-                                                        {currentTrip?.description ? currentTrip.description : "Chưa có cảm nghĩ"}
-                                                    </Typography>
-                                                </div>
-                                                <div>
-                                                    Ảnh đã đăng tải:
-                                                    <ImageList sx={{ width: 800, height: 450 }} cols={3} rowHeight={164}>
-                                                        {imgs && imgs.map((image, index) => (
-                                                            <ImageListItem key={index}>
-                                                                <Paper>
-                                                                    <img
-                                                                        src={`${image}?w=164&h=164&fit=crop&auto=format`}
-                                                                        srcSet={`${image}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                                                                        alt={`Hình ${index}`}
-                                                                        loading="lazy"
-                                                                        style={{ width: '100%' }}
-                                                                    />
-                                                                </Paper>
-                                                            </ImageListItem>
-                                                        ))}
-                                                    </ImageList>
-                                                </div>
-                                            </div>
-                                        </AccordionDetails>
-                                    </Accordion>
-                                }
-                                <Button className={`trip-select-btn`} onClick={(event) => handleAdd(event, currentTrip.id)} variant="outlined">
-                                    Thêm
-                                </Button>
-                            </div>
-                        ))}
+                <h1>Tìm kiếm</h1>
+                <div className="createalbum__utils">
+                    <div className="createalbum__search" >
+                        <TextField
+                            label="Tìm kiếm"
+                            id="standard-size-normal"
+                            variant="standard"
+                            // onChange={(event) => setInputSearch(event.target.value)}
+                            placeholder="Tìm kiếm ở đây"
+                        />
+                        {/* <FaSearch className="search-icon" onClick={() => search(inputsearch)}></FaSearch> */}
+                        <div className="createalbum__search__btn">
+                            <FaSearch className="search-icon"></FaSearch>
+                        </div>
+                    </div>
+                    <h1>Sắp xếp</h1>
+                    <div className="createalbum__sort">
+                        <FormControl fullWidth className="home-filter">
+                            <InputLabel variant="standard" htmlFor="uncontrolled-native">Ngày đi</InputLabel>
+                            <NativeSelect
+                                defaultValue={1}
+                            // onChange={handleChange}
+                            >
+                                <option value={1}>Gần đây nhất</option>
+                                <option value={2}>Lâu nhất</option>
+                            </NativeSelect>
+                        </FormControl>
+                        <FormControl fullWidth className="home-filter">
+                            <InputLabel variant="standard" htmlFor="uncontrolled-native">Chữ cái</InputLabel>
+                            <NativeSelect
+                                defaultValue={1}
+                            // onChange={handleChange}
+                            >
+                                <option value={1}>Tăng dần</option>
+                                <option value={2}>Giảm dần</option>
+                            </NativeSelect>
+                        </FormControl>
                     </div>
                 </div>
-                <div className="createalbum__right">
-                    <Typography variant="h4">Tạo Album</Typography>
-                    <Button className="createalbum-btn" onClick={(event) => handleCreateAlbum(event)} variant="outlined">Tạo Album</Button>
-                    <Typography variant="h5">Trips đã chọn </Typography>
-                    <div className="selected-trips">
-                        {selectedTrips && selectedTrips.map((trip) => (
-                            <div className="selected-trip">
-                                <div key={trip.title}>{trip.title}</div>
-                                <Button className={`trip-remove-btn`} onClick={(event) => handleRemove(event, trip.id)} variant="outlined">
-                                    Xoá
-                                </Button>
-                            </div>
-                        ))}
+                <div className="createalbum__contents">
+                    <div className="createalbum__left">
+                        <h2>Create Album</h2>
+                        <div className="trips-list">
+                            {trips && trips.map((currentTrip) => (
+                                <div className="trip-box">
+                                    {
+                                        <Accordion>
+                                            <AccordionSummary
+                                                expandIcon={<ExpandMoreIcon />}
+                                                aria-controls="panel1a-content"
+                                                id="panel1a-header"
+                                            >
+                                                <Typography sx={{ width: '33%', flexShrink: 0 }}> {currentTrip.title}</Typography>
+                                                <Typography sx={{ color: 'text.secondary' }}>Thời gian: {currentTrip.time}, Địa điểm: </Typography>
+                                            </AccordionSummary>
+                                            <AccordionDetails>
+                                                <div className="trip__infor">
+                                                    <div className='rating__row'>
+                                                        Rating:
+                                                        <Rating
+                                                            name="rating"
+                                                            value={currentTrip.rating}
+                                                            readOnly
+                                                        />
+                                                    </div>
+                                                    <div>
+                                                        <Typography variant="h5" component="h6">
+                                                            {currentTrip?.description ? currentTrip.description : "Chưa có cảm nghĩ"}
+                                                        </Typography>
+                                                    </div>
+                                                    <div>
+                                                        Ảnh đã đăng tải:
+                                                        <ImageList sx={{ width: 800, height: 450 }} cols={3} rowHeight={164}>
+                                                            {imgs && imgs.map((image, index) => (
+                                                                <ImageListItem key={index}>
+                                                                    <Paper>
+                                                                        <img
+                                                                            src={`${image}?w=164&h=164&fit=crop&auto=format`}
+                                                                            srcSet={`${image}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                                                                            alt={`Hình ${index}`}
+                                                                            loading="lazy"
+                                                                            style={{ width: '100%' }}
+                                                                        />
+                                                                    </Paper>
+                                                                </ImageListItem>
+                                                            ))}
+                                                        </ImageList>
+                                                    </div>
+                                                </div>
+                                            </AccordionDetails>
+                                        </Accordion>
+                                    }
+                                    <Button className={`trip-select-btn`} onClick={(event) => handleAdd(event, currentTrip.id)} variant="outlined">
+                                        Thêm
+                                    </Button>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="createalbum__right">
+                        <Typography variant="h4">Tạo Album</Typography>
+                        <Button className="createalbum-btn" onClick={(event) => handleCreateAlbum(event)} variant="outlined">Tạo Album</Button>
+                        <Typography variant="h5">Trips đã chọn </Typography>
+                        <div className="selected-trips">
+                            {selectedTrips && selectedTrips.map((trip) => (
+                                <div className="selected-trip">
+                                    <div key={trip.title}>{trip.title}</div>
+                                    <Button className={`trip-remove-btn`} onClick={(event) => handleRemove(event, trip.id)} variant="outlined">
+                                        Xoá
+                                    </Button>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
                 <Dialog

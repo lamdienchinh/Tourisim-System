@@ -7,6 +7,7 @@ const AlbumThumbnail = (props) => {
     const handleClick = () => {
         navigate('/viewalbum');
     };
+    let time = `${place.time.getDate()}/${place.time.getMonth()}/${place.time.getFullYear()}`
     return (
         <div className="albumthumbnail" onClick={handleClick}>
             <div className="albumthumbnail__img">
@@ -17,7 +18,7 @@ const AlbumThumbnail = (props) => {
                     {place.title}
                 </div>
                 <div className="albumthumbnail__time">
-                    Thời gian: {place.time}
+                    Thời gian: {time}
                 </div>
             </div>
         </div>

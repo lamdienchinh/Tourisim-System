@@ -2,7 +2,7 @@ import img from "../../assets/imgs/angiang.webp"
 import "./css/PlaceInfor.scss"
 import 'react-alice-carousel/lib/alice-carousel.css';
 import AliceCarousel from 'react-alice-carousel';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Rating, NativeSelect, FormControl, InputLabel } from '@mui/material';
 import ReviewChart from "../../components/review_chart";
 // import { useState } from "react";
@@ -10,13 +10,9 @@ import Review from "../../components/review";
 import Container from '@mui/material/Container';
 
 const PlaceInfor = () => {
-    // const reviews = [
-    //     { rating: 1, count: 10 },
-    //     { rating: 2, count: 20 },
-    //     { rating: 3, count: 30 },
-    //     { rating: 4, count: 15 },
-    //     { rating: 5, count: 25 },
-    // ];
+
+    const { placeinformation } = useLocation();
+    console.log(placeinformation);
     const navigate = useNavigate();
     // Xử lý Slideshow
     const handleDragStart = (e) => e.preventDefault();

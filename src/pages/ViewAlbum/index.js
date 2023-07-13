@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import { TextField, Paper, Rating, Typography, ImageList, ImageListItem } from "@mui/material";
 import img from "../../assets/imgs/place1.png"
@@ -13,11 +12,6 @@ const ViewAlbum = () => {
     const handleLocationClick = (location) => {
         setSelectedLocation(location);
     };
-    let navigate = useNavigate();
-    const handleGoBack = () => {
-        navigate("/album");
-    };
-
     const locations = [
         {
             id: 1,

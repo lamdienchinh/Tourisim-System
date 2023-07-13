@@ -86,7 +86,7 @@ const Header = () => {
     const confirmlogout = (event, check) => {
         if (check) {
             dispatch(logout(dispatch));
-            navigate('/home')
+            navigate('/')
         }
         setClogout(false);
     }

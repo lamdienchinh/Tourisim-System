@@ -16,6 +16,7 @@ import Link from '@mui/material/Link';
 import Skeleton from '@mui/material/Skeleton';
 
 const Album = () => {
+    const [allalbums, setAllAlbums] = useState([])
     const [albums, setAlbums] = useState([]);
     const [newAlbum, setNewAlbum] = useState('');
     const [row1, setRow1] = useState([]);
@@ -50,10 +51,11 @@ const Album = () => {
             rate: 5,
             address: "ADDRESS",
             comment: "COMMENT",
-            time: "23:00, 01-07-2023"
+            time: new Date(2023, 7, 13)
         }
         let array = Array.from({ length: 32 }, () => ({ ...temp }));
         setAlbums(array);
+        setAllAlbums(array)
         setIsLoading(false)
     }, []);
 
@@ -63,21 +65,62 @@ const Album = () => {
         if (end > albums.length) end = albums.length;
         let currents = albums.slice(start, end);
         let totalPages = Math.ceil(albums.length / 12);
-
         let row1 = currents.slice(0, 2);
         let row2 = currents.slice(2, 4);
-        // let row3 = currents.slice(6, 9);
-        // let row4 = currents.slice(9, 12);
-
         setRow1(row1);
         setRow2(row2);
-        // setRow3(row3);
-        // setRow4(row4);
         setTotalPages(totalPages);
     }, [albums, select]);
+
     useEffect(() => {
         console.log(isLoading)
     }, [isLoading])
+
+    function sortArrayByDate(value) {
+        setValue(value);
+        let arr = [...albums]
+        arr.sort(function (a, b) {
+            var dateA = new Date(a.dateCreated).getTime();
+            var dateB = new Date(b.dateCreated).getTime();
+
+            return dateA - dateB;
+        });
+
+        if (value === "2") {
+            arr.reverse();
+        }
+
+        setAlbums(arr);
+    }
+
+    function sortArrayByWord(type) {
+        let arr = [...albums];
+        arr.sort(function (a, b) {
+            return a.title.localeCompare(b.title);
+        });
+        console.log(typeof (type))
+        if (type === "2") {
+            console.log("Run")
+            arr.reverse();
+            console.log("Run")
+        }
+        console.log(arr)
+        setAlbums(arr);
+    }
+
+    function filterDate(date) {
+        let arr = [...allalbums]
+        let filteredArray = arr.filter(function (item) {
+            // var itemDate = new Date(item);
+            return (
+                item.time.getDate() === date.getDate() &&
+                item.time.getMonth() - 1 === date.getMonth() &&
+                item.time.getFullYear() === date.getFullYear()
+            );
+        });
+
+        setAlbums(filteredArray);
+    }
     return (
         <div className="album">
             <div className="album-slide">
@@ -106,7 +149,7 @@ const Album = () => {
                             <InputLabel variant="standard" htmlFor="uncontrolled-native">Tên tiêu đề</InputLabel>
                             <NativeSelect
                                 defaultValue={1}
-                            // onChange={handleChange}
+                                onChange={(event) => sortArrayByWord(event.target.value)}
                             >
                                 <option value={1}>A-Z ASC</option>
                                 <option value={2}>Z-A DASC</option>
@@ -116,10 +159,10 @@ const Album = () => {
                             <InputLabel variant="standard" htmlFor="uncontrolled-native">Ngày tạo</InputLabel>
                             <NativeSelect
                                 defaultValue={1}
-                            // onChange={handleChange}
+                                onChange={(event) => sortArrayByDate(event.target.value)}
                             >
-                                <option value={1}>Mới nhất</option>
-                                <option value={2}>Cũ nhất</option>
+                                <option value={1}>Cũ nhất</option>
+                                <option value={2}>Mới nhất</option>
                             </NativeSelect>
                         </FormControl>
                         <h1>Chọn ngày tạo</h1>
@@ -129,7 +172,8 @@ const Album = () => {
                                     <DateTimePicker
                                         label="Chọn ngày"
                                         value={value}
-                                        onChange={(newValue) => setValue(newValue)}
+                                        onChange={(event) => filterDate(event.$d)}
+                                        views={['year', 'month', 'day']}
                                     />
                                 </DemoContainer>
                             </LocalizationProvider>
@@ -157,16 +201,6 @@ const Album = () => {
                                     ))}
                                 </div>
                             }
-                            {/* <div className="album__results--3">
-                            {row3.map((item, itemIndex) => (
-                                <AlbumThumbnail key={itemIndex} place={item} />
-                            ))}
-                        </div>
-                        <div className="album__results--4">
-                            {row4.map((item, itemIndex) => (
-                                <AlbumThumbnail key={itemIndex} place={item} />
-                            ))}
-                        </div> */}
                             <div className="album__results--pagination">
                                 <Pagination count={totalPages} onChange={handlePageChange} showFirstButton showLastButton />
                             </div>

@@ -9,6 +9,7 @@ import Skeleton from '@mui/material/Skeleton';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import Typography from "@mui/material/Typography";
+import { getAllPlace } from "../../service/api";
 // import { getUserData } from '../../state/selectors';
 // import { useSelector } from 'react-redux';
 //import scss
@@ -20,15 +21,18 @@ const Home = () => {
 
     const [inputsearch, setInputSearch] = useState("");
 
+    // Lấy các places từ BE
     const [allplaces, setAllPlaces] = useState([]);
+
+
+    // Places sau khi filter rồi 
+    const [places, setPlaces] = useState([]);
+
     const [select, setSelect] = useState(1);
     const [getplaces, setGetPlaces] = useState(0);
-    const [places, setPlaces] = useState([]);
     const [row1, setRow1] = useState([]);
     const [row2, setRow2] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    // const [row3, setRow3] = useState([]);
-    // const [row4, setRow4] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
     // const [star, selectStar] = useState();
     const handlePageChange = (event, number) => {
@@ -36,14 +40,23 @@ const Home = () => {
     }
 
     useEffect(() => {
+        const fetchdata = async () => {
+            let fetch = await getAllPlace();
+            console.log(fetch)
+            // setAllPlaces(fetch);
+            // setPlaces(fetch);
+        }
         let temp = types.types;
         const array = Array.from({ length: 50 }, (_, index) =>
             temp[Math.floor(index / 10)]
         ).flatMap((placeType, index) => ({
             ...placeType
         }));
+
+        fetchdata();
         setAllPlaces(array);
         setPlaces(array);
+
         setIsLoading(false);
     }, []);
 
@@ -119,6 +132,54 @@ const Home = () => {
         });
         setPlaces(filteredData);
     };
+
+    function sortArrayByRating(type) {
+        let arr = [...places];
+        if (type === "1") {
+            arr.sort(function (a, b) {
+                return a.rating - b.rating;
+            });
+        } else if (type === "2") {
+            arr.sort(function (a, b) {
+                return b.rating - a.rating;
+            });
+        } else {
+            console.log("Invalid sorting type");
+        }
+        setPlaces(arr);
+    }
+
+    function sortArrayByReviews(type) {
+        let arr = [...places];
+        if (type === "1") {
+            arr.sort(function (a, b) {
+                return a.comment - b.comment;
+            });
+        } else if (type === "2") {
+            arr.sort(function (a, b) {
+                return b.comment - a.comment;
+            });
+        } else {
+            console.log("Invalid sorting type");
+        }
+        setPlaces(arr);
+    }
+
+    function sortArrayByWord(type) {
+        let arr = [...places];
+        arr.sort(function (a, b) {
+            return a.title.localeCompare(b.title);
+        });
+        console.log(typeof (type))
+        if (type === "2") {
+            console.log("Run")
+            arr.reverse();
+            console.log("Run")
+        }
+        console.log(arr)
+        setPlaces(arr);
+    }
+
     return (
         <div className="home">
             <div className="home__slides">
@@ -168,17 +229,27 @@ const Home = () => {
                             <InputLabel variant="standard" htmlFor="uncontrolled-native">Số sao</InputLabel>
                             <NativeSelect
                                 defaultValue={1}
-                            // onChange={handleChange}
+                                onChange={(event) => sortArrayByRating(event.target.value)}
                             >
                                 <option value={1}>Tăng dần</option>
                                 <option value={2}>Giảm dần</option>
                             </NativeSelect>
                         </FormControl>
                         <FormControl fullWidth className="home-filter">
+                            <InputLabel variant="standard" htmlFor="uncontrolled-native">Thứ tự tiêu đề </InputLabel>
+                            <NativeSelect
+                                defaultValue={1}
+                                onChange={(event) => sortArrayByWord(event.target.value)}
+                            >
+                                <option value={1}>A-Z ASC</option>
+                                <option value={2}>Z-A DASC</option>
+                            </NativeSelect>
+                        </FormControl>
+                        <FormControl fullWidth className="home-filter">
                             <InputLabel variant="standard" htmlFor="uncontrolled-native">Số Reviews</InputLabel>
                             <NativeSelect
                                 defaultValue={1}
-                            // onChange={handleChange}
+                                onChange={(event) => sortArrayByReviews(event.target.value)}
                             >
                                 <option value={1}>Tăng dần</option>
                                 <option value={2}>Giảm dần</option>
@@ -202,16 +273,6 @@ const Home = () => {
                                 <PlaceThumbnail place={item}></PlaceThumbnail>
                             ))}
                         </div>}
-                        {/* <div className="home__results--3">
-                            {row3 && row3.map((item, itemIndex) => (
-                                <PlaceThumbnail place={item}></PlaceThumbnail>
-                            ))}
-                        </div>
-                        <div className="home__results--4">
-                            {row4 && row4.map((item, itemIndex) => (
-                                <PlaceThumbnail place={item}></PlaceThumbnail>
-                            ))}
-                        </div> */}
                         <div className="home__results--pagination">
                             <Pagination count={totalPages} onChange={handlePageChange} showFirstButton showLastButton />
                         </div>

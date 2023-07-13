@@ -7,7 +7,10 @@ const PlaceThumbnail = (props) => {
     let place = props.place;
     const navigate = useNavigate();
     const handleClick = () => {
-        navigate('/placeinfor');
+        // Thêm một hàm lấy reviews
+        
+        //Sau đó tổng hợp data truyền cho placeinfor
+        navigate('/placeinfor', { state: place });
     };
     return (
         <div className="placethumbnail" onClick={handleClick}>
